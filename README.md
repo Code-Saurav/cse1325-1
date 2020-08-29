@@ -1,8 +1,8 @@
 # cse1325
 CSE 1325 Assignments
-Username: <strong>hprabesh</strong>
-Email: <strong>prabesh.humagain@mavs.uta.edu</strong>
-NetID:<strong> 1001734700</strong>
+Username: <strong>hprabesh</strong><br/>
+Email: <strong>prabesh.humagain@mavs.uta.edu</strong><br/>
+NetID:<strong> 1001734700</strong><br/>
 
 
 
