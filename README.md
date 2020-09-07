@@ -14,10 +14,9 @@ NetID:<strong> 1001734700</strong><br/>
       <li>Extra Bonus: <strong>Done in Python3, Java, and C</strong></li>
   </li>
   <li>
-    Second Assignment: <strong><a href="">P02</a></strong>
+    Second Assignment: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P02">P02</a></strong>
     <ul><li>Full - credit :<Strong>Done</strong></li>
-    <li>Bonus:<strong>Done </strong><li>
-    <Li>Extra Bonus: <strong>Pending</strong></li>
-    
+    <li>Bonus:<strong>Done</strong><li>
+    <li>Extra Bonus: <strong>Pending</strong></li>
   </li>
 </ol>
