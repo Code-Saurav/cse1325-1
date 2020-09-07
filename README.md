@@ -13,4 +13,7 @@ NetID:<strong> 1001734700</strong><br/>
       <li>Bonus :<strong> Done</strong></li>
       <li>Extra Bonus: <strong>Done in Python3, Java, and C</strong></li>
   </li>
+  <li>
+    Second Assignment: <strong>
+  </li>
 </ol>
