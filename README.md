@@ -19,7 +19,7 @@ NetID:<strong> 1001734700</strong><br/>
     <ul>
       <li>Full - credit : <Strong>Done</strong></li>
       <li>Bonus : <strong>Done</strong></li>
-      <li>Extra Bonus: <strong>Pending</strong></li>
+      <li>Extra Bonus: <strong>Done: Worked with Stats</strong></li>
     </ul>
   </li>
 </ol>
