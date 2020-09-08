@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <vector>
+#include <algorithm>
 
 class Die{
     int _faces; //immutable once the user establishes the dice size
