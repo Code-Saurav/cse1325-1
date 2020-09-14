@@ -1,7 +1,7 @@
 #include <iostream>
 #include "match.h"
 
-int Tile::_width=-1;
+std::string Tile::_blank{"----"}; 
 Tile::Tile(std::string word):_word{word},_matched{false}{
     if (_word.length()>_width){
         _width=_word.length();
@@ -11,9 +11,9 @@ Tile::Tile(std::string word):_word{word},_matched{false}{
         }
     }
 };
+int Tile::_width{-1};
 bool Tile::match(Tile& tile){
-    if (_word==tile._word){
-        tile._matched=true;
+    if (_word==tile.word()){
         _matched=true;
     }
     return _matched;

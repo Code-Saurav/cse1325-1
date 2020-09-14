@@ -1,10 +1,10 @@
 #ifndef __MATCH_H
 #include <vector>
+#include <iostream>
 #define __MATCH_H
 class Tile{
     public:
         Tile(std::string word);
-        ~Tile();
         bool match(Tile& tile);
         std::string word();
         bool matched();
@@ -19,7 +19,6 @@ class Tile{
 class Board{
     public:
         Board(int tiles); //constructor
-        ~Board(); //destructor
         std::string attempt(int tile1, int tile2);
         bool solved();
         std::string to_string();

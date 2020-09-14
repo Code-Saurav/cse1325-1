@@ -50,8 +50,8 @@ bool Board::solved(){
         } else{
             return false;
         }
-        return returnVal;
     }
+    return returnVal;
 }
 std::string Board::to_string(){
     std::string string_board;
