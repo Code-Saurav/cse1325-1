@@ -35,12 +35,11 @@ Board::Board(int tiles){
     std::random_shuffle(_tiles.begin(),_tiles.end());
 }
 std::string Board::attempt(int tile1,int tile2){
-    Tile tile_one=_tiles[tile1];
-    Tile tile_two=_tiles[tile2];
-    if (tile_one.match(tile_two)==true){
-        return tile_one.word()+" "+"MATCHES"+" "+tile_two.word();
+    if (_tiles[tile1].match(_tiles[tile2])==true){
+        std::cout<<to_string();
+        return _tiles[tile1].word()+" "+"MATCHES"+" "+_tiles[tile2].word();
     }else {
-        return tile_one.word()+" "+tile_two.word();
+        return _tiles[tile1].word()+" "+_tiles[tile2].word();
     };
 }
 bool Board::solved(){
