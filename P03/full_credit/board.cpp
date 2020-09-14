@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <ctime>
+#include <string>
 
 std::vector<std::string> words {
 "bang", "beam", "bear", "cafe", "came",
@@ -36,7 +37,7 @@ std::string Board::attempt(int tile1,int tile2){
     Tile tile_one=_tiles[tile1];
     Tile tile_two=_tiles[tile2];
     if (tile_one.match(tile_two)==true){
-        return tile_one.word()+" "+"Matches"+" "+tile_two.word();
+        return tile_one.word()+" "+"MATCHES"+" "+tile_two.word();
     }else {
         return tile_one.word()+" "+tile_two.word();
     };
@@ -53,5 +54,9 @@ bool Board::solved(){
     }
 }
 std::string Board::to_string(){
-    
+    std::string string_board;
+    for (int i=0; i<_tiles.size();i++){
+        string_board=string_board+ std::to_string(i)+") "+_tiles[i].word()+"/n";
+    }
+    return string_board;
 }
