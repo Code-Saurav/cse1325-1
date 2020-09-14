@@ -23,6 +23,7 @@ std::vector<std::string> words {
 "zero", "zips",
 };
 
+
 Board::Board(int tiles){
     std::srand (unsigned (std::time(0)));
     std::random_shuffle(words.begin(),words.end());
@@ -56,7 +57,7 @@ bool Board::solved(){
 std::string Board::to_string(){
     std::string string_board;
     for (int i=0; i<_tiles.size();i++){
-        string_board=string_board+ std::to_string(i)+") "+_tiles[i].word()+"/n";
+        string_board=string_board+ std::to_string(i)+") "+_tiles[i].to_string()+"\n";
     }
     return string_board;
 }
