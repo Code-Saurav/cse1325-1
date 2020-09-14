@@ -1,4 +1,3 @@
-#include <iostream>
 #include "match.h"
 
 std::string Tile::_blank{"----"};
