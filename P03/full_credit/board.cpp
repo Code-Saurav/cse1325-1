@@ -36,7 +36,6 @@ Board::Board(int tiles){
 }
 std::string Board::attempt(int tile1,int tile2){
     if (_tiles[tile1].match(_tiles[tile2])==true){
-        std::cout<<to_string();
         return _tiles[tile1].word()+" "+"MATCHES"+" "+_tiles[tile2].word();
     }else {
         return _tiles[tile1].word()+" "+_tiles[tile2].word();

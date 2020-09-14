@@ -3,6 +3,7 @@ CXXFLAGS = --std=c++17
 all: main
 main: main.o board.o tile.o *.h
 	$(CXX) $(CXXFLAGS) main.o board.o tile.o -o main
+	@echo "./main to run the program: Happy Coding"
 
 main.o: main.cpp *.h
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
