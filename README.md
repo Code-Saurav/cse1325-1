@@ -27,7 +27,7 @@ NetID:<strong> 1001734700</strong><br/>
     <ul>
       <li>Full - credit : <Strong>Done</strong></li>
       <li>Bonus : <strong>Done</strong></li>
-      <li>Extra Bonus: <strong>Note Done</strong></li>
+      <li>Extra Bonus: <strong>Done</strong></li>
     </ul>
   </li>
 </ol>
