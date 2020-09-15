@@ -10,6 +10,7 @@ class Tile{
         bool matched();
         static int width();
         friend std::ostream& operator<<(std::ostream& ost, const Tile& tile);
+        bool operator==(const Tile& tile1) const;
     private:
         std::string _word;
         bool _matched;

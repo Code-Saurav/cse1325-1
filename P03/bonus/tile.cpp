@@ -12,13 +12,15 @@ Tile::Tile(std::string word):_word{word},_matched{false}{
 };
 int Tile::_width{-1};
 bool Tile::match(Tile& tile){
-    if (_word==tile.word()){
+    if (*this==tile){
         tile._matched=true;
         _matched=true;
-        
     }
     return _matched;
 };
+bool Tile::operator==(const Tile& tile1) const {
+    return (_word==tile1._word);
+}
 
 std::string Tile::word(){
     return _word;
