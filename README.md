@@ -26,7 +26,7 @@ NetID:<strong> 1001734700</strong><br/>
     Third Assignment: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P03">P03</a></strong>
     <ul>
       <li>Full - credit : <Strong>Done</strong></li>
-      <li>Bonus : <strong>Not Done</strong></li>
+      <li>Bonus : <strong>Done</strong></li>
       <li>Extra Bonus: <strong>Note Done</strong></li>
     </ul>
   </li>
