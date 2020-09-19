@@ -9,14 +9,14 @@ class Modulo{
         Modulo& operator+=(int rhs);
         Modulo operator+(int rhs);
         Modulo operator++(int ignored);
-        inline bool operator==(int rhs);
-        inline bool operator!=(int rhs);
-        inline bool operator<(int rhs);
-        inline bool operator<=(int rhs);
-        inline bool operator>(int rhs);
-        inline bool operator>=(int rhs);
-        friend std::ostream& operator <<(std::ostream&ost, Modulo& m);
-        friend std::ostream& operator >>(std::ostream&ost, Modulo& m);
+        inline bool operator==(const int rhs);
+        inline bool operator!=(const int rhs);
+        inline bool operator<(const int rhs);
+        inline bool operator<=(const int rhs);
+        inline bool operator>(const int rhs);
+        inline bool operator>=(const int rhs);
+        friend std::ostream& operator <<(std::ostream& ost, const Modulo& m);
+        friend std::istream& operator >>(std::istream& ost, Modulo& m);
     private:
         int _modulo;
         int _value;
