@@ -8,7 +8,8 @@ class Modulo{
         int value();
         Modulo& operator+=(int rhs);
         Modulo operator+(int rhs);
-        Modulo operator++(int ignored);
+        Modulo& operator++(); //preincrement
+        Modulo operator++(int); //post increment
         inline bool operator==(const int rhs);
         inline bool operator!=(const int rhs);
         inline bool operator<(const int rhs);
