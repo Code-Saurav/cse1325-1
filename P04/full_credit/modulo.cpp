@@ -24,7 +24,7 @@ Modulo Modulo::operator+(int rhs){
     }
     return *this;
 }
-Modulo Modulo::operator++(int){
+Modulo Modulo::operator++(int ignored){
     Modulo modulo(*this);
     ++*this;
     return modulo;
@@ -36,30 +36,6 @@ Modulo& Modulo::operator++(){
         _nmsd->_value++;
     }
     return *this;
-}
-
-inline bool Modulo::operator==(const int rhs){
-    return (compare(rhs)==0);
-}
-
-inline bool Modulo::operator!=(const int rhs){
-    return (compare(rhs)!=0);
-}
-
-inline bool Modulo::operator<(const int rhs){
-    return (compare(rhs)==-1);
-}
-
-inline bool Modulo::operator<=(const int rhs){
-    return (compare(rhs)==0 || compare(rhs)==-1);
-}
-
-inline bool Modulo::operator>(const int rhs){
-    return (compare(rhs)==1);
-}
-
-inline bool Modulo::operator>=(const int rhs){
-    return (compare(rhs)==0 || compare(rhs)==1); 
 }
 
 std::ostream& operator<<(std::ostream& ost, const Modulo& m){
