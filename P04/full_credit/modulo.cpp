@@ -10,6 +10,15 @@ void Modulo::set_nmsd(Modulo *nmsd){
 }
 
 Modulo& Modulo::operator+=(int rhs){
+    if (_value>=_modulo){
+        _value=(_value)%_modulo;
+        _nmsd->_value++;
+        _nmsd->_value=(_nmsd->_value)%(_nmsd->_modulo);
+    }
+    _value=_value+rhs;
+    return *this;
+}
+Modulo Modulo::operator+(int rhs){
     _value=_value+rhs;
     if (_value>=_modulo){
         _value=(_value)%_modulo;
@@ -17,27 +26,22 @@ Modulo& Modulo::operator+=(int rhs){
     }
     return *this;
 }
-Modulo Modulo::operator+(int rhs){
-    Modulo modulo{*this};
-    _value=_value+rhs;
-    if (_value>=_modulo){
-        _value=(_value)%_modulo;
-        _nmsd->_value++;
-    }
-    return modulo;
-}
 Modulo Modulo::operator++(int ignored){
-    Modulo modulo{*this};
-    ++*this;
-    return modulo;
-}
-Modulo& Modulo::operator++(){
     _value=_value+1;
     if (_value>=_modulo){
         _value=(_value)%_modulo;
         _nmsd->_value++;
     }
     return *this;
+}
+Modulo& Modulo::operator++(){
+    Modulo *temp{this};
+    _value=_value+1;
+    if (_value>=_modulo){
+        _value=(_value)%_modulo;
+        _nmsd->_value++;
+    }
+    return *temp;
 }
 
 std::ostream& operator<<(std::ostream& ost, const Modulo& m){
