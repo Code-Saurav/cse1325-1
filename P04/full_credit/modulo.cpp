@@ -38,7 +38,7 @@ Modulo& Modulo::operator++(){
     Modulo *temp{this};
     _value=_value+1;
     if (_value>=_modulo){
-        _value=(_value)%_modulo;
+        _value=(_value)%(_modulo);
         _nmsd->_value++;
     }
     return *temp;
@@ -58,7 +58,7 @@ int Modulo::compare(const int rhs){
 std::istream& operator>>(std::istream& ost, Modulo& m){
     
     ost >> m._value;
-    m._value=(m._value-m._offset)%(m._modulo);
+    m._value=(m._value+m._offset)%(m._modulo);
     return ost; 
 }
 

@@ -20,8 +20,8 @@ class Modulo{
         friend std::istream& operator >>(std::istream& ost, Modulo& m);
     private:
         int _modulo;
-        int _value;
         int _offset;
+        int _value;
         Modulo* _nmsd;
         int compare(const int rhs);
 };
