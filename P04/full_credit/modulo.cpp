@@ -1,6 +1,7 @@
 #include "modulo.h"
 
 Modulo::Modulo(int modulo, int value, int offset):_value{value},_modulo{modulo},_offset{offset}{};
+
 int Modulo::value(){
     return _value;
 }
@@ -17,15 +18,16 @@ Modulo& Modulo::operator+=(int rhs){
     return *this;
 }
 Modulo Modulo::operator+(int rhs){
+    Modulo modulo{*this};
     _value=_value+rhs;
     if (_value>=_modulo){
         _value=(_value)%_modulo;
         _nmsd->_value++;
     }
-    return *this;
+    return modulo;
 }
 Modulo Modulo::operator++(int ignored){
-    Modulo modulo(*this);
+    Modulo modulo{*this};
     ++*this;
     return modulo;
 }
@@ -39,8 +41,7 @@ Modulo& Modulo::operator++(){
 }
 
 std::ostream& operator<<(std::ostream& ost, const Modulo& m){
-    int sum=m._value+m._offset;
-    ost<< sum;
+    ost<< m._value+m._offset;
     return ost;
 }
 
@@ -51,9 +52,9 @@ int Modulo::compare(const int rhs){
     
 }
 std::istream& operator>>(std::istream& ost, Modulo& m){
-    int input;
-    ost >> input;
-    input=(input-m._offset)%(m._modulo);
+    
+    m._value=(m._value-m._offset)%(m._modulo);
+    ost >> m._value;
     return ost; 
 }
 
