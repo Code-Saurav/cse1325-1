@@ -53,8 +53,8 @@ int Modulo::compare(const int rhs){
 }
 std::istream& operator>>(std::istream& ost, Modulo& m){
     
-    m._value=(m._value-m._offset)%(m._modulo);
     ost >> m._value;
+    m._value=(m._value-m._offset)%(m._modulo);
     return ost; 
 }
 
