@@ -10,12 +10,12 @@ class Modulo{
         Modulo operator+(int rhs);
         Modulo& operator++(); //preincrement
         Modulo operator++(int ignored); //post increment
-        inline bool operator==(const int rhs){return (compare(rhs)==0);};
-        inline bool operator!=(const int rhs){return (compare(rhs)!=0);};
-        inline bool operator<(const int rhs){return (compare(rhs)==-1);};
-        inline bool operator<=(const int rhs){return (compare(rhs)==0 || compare(rhs)==-1);};
-        inline bool operator>(const int rhs){return (compare(rhs)==1);};
-        inline bool operator>=(const int rhs){return (compare(rhs)==0 || compare(rhs)==1);};
+        inline bool operator==(const int rhs){return (compare(rhs)==1);};
+        inline bool operator!=(const int rhs){return (compare(rhs)!=1);};
+        inline bool operator<(const int rhs){return (compare(rhs)==3);};
+        inline bool operator<=(const int rhs){return (compare(rhs)==4);};
+        inline bool operator>(const int rhs){return (compare(rhs)==5);};
+        inline bool operator>=(const int rhs){return (compare(rhs)==6);};
         friend std::ostream& operator <<(std::ostream& ost, const Modulo& m);
         friend std::istream& operator >>(std::istream& ost, Modulo& m);
     private:
