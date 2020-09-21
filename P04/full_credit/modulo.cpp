@@ -4,7 +4,6 @@ Modulo::Modulo(int modulo, int value, int offset):_value{value},_modulo{modulo},
 };
 
 int Modulo::value(){
-    
     return _value;
 }
 void Modulo::set_nmsd(Modulo *nmsd){
@@ -13,11 +12,10 @@ void Modulo::set_nmsd(Modulo *nmsd){
 
 Modulo& Modulo::operator+=(int rhs){
     this->_value=this->_value+rhs;
-    if (this->_value>=this->_modulo){
-        this->_value=(this->_value)%this->_modulo;
-        if (_nmsd!=NULL){
-            _nmsd->_value=(_nmsd->_value)%(_nmsd->_modulo);
-            _nmsd->operator+=(1);
+    if (this->_value>=(this->_modulo+this->_offset)){
+        this->_value=(this->_value)%(this->_modulo);
+        if (this->_nmsd!=NULL){
+            _nmsd->operator+=(1); //recrusive call to update it's next most significant pointer
         }
     }
     return *this;
@@ -27,21 +25,22 @@ Modulo Modulo::operator+(int rhs){
     modulo._value=modulo._value+rhs;
     if (modulo._value>=modulo._modulo){
         modulo._value=(modulo._value)%modulo._modulo;
-        if (_nmsd!=NULL){
-            _nmsd->_value=(_nmsd->_value)%(_nmsd->_modulo);
-            _nmsd->_value++;
+        if (modulo._nmsd!=NULL){
+            modulo._nmsd->operator+=(1);
+            // modulo._nmsd->_value=(modulo._nmsd->_value)%(modulo._nmsd->_modulo);
         }
     }
     return modulo;
 }
 Modulo& Modulo::operator++(){ //preincrement
-    _value=(_value+1);
+    this->_value=(this->_value+1);
 
-    if (_value>=_modulo){
-        _value=(_value)%_modulo;
-        if (_nmsd!=NULL){
-            _nmsd->_value=(_nmsd->_value)%(_nmsd->_modulo);
-            _nmsd->_value++;
+    if (this->_value>=this->_modulo){
+        this->_value=(this->_value)%this->_modulo;
+        if (this->_nmsd!=NULL){
+            this->_nmsd->_value=(this->_nmsd->_value)%(this->_nmsd->_modulo);
+            
+            _nmsd->operator+=(1);
         }
     }
     return *this;
@@ -51,7 +50,6 @@ Modulo Modulo::operator++(int ignored){ //post increment
     ++*this;
     return modulo;
 }
-
 
 
 
@@ -65,7 +63,9 @@ int Modulo::compare(const int rhs){
     
 }
 std::ostream& operator<<(std::ostream& ost, const Modulo& m){
+
     ost<< m._value;
+
     return ost;
 }
 std::istream& operator>>(std::istream& ost, Modulo& m){
