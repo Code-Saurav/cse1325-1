@@ -34,7 +34,6 @@ NetID:<strong> 1001734700</strong><br/>
     Fourth Assignment: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P04">P04</a></strong>
     <ul>
       <li>Full - credit : <Strong>Done</strong></li>
-      <li>Bonus : <strong>Pending</strong></li>
     </ul>
   </li>
 </ol>
