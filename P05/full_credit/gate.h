@@ -1,6 +1,15 @@
 #ifndef _GATE__H
+
 #define _GATE__H
+
 #include "data.cpp"
+
+#define PINONE 1
+#define PINTWO 2
+
+#define SIGNALZERO 0
+#define SIGNALONE 1
+
 class Gate{
     public:
         Gate();
@@ -24,4 +33,5 @@ class Or: public Gate{
     public:
         Signal output() override;
 };
+
 #endif
