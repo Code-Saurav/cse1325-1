@@ -1,12 +1,13 @@
 #ifndef _GATE__H
 #define _GATE__H
+#include "data.cpp"
 class Gate{
     public:
         Gate();
         void connect(Gate& gate, Pin input_pin);
         void input(Pin pin, Signal signal);
         Signal input(Pin pin);
-        Signal output();
+        virtual Signal output()=0;
     private:
         Gate* _to_gate;
         Pin _to_pin;
@@ -14,5 +15,13 @@ class Gate{
         Signal _input1;
         Signal _input2;
     
-}
+};
+class And: public Gate{
+    public:
+        Signal output() override;
+};
+class Or: public Gate{
+    public:
+        Signal output() override;
+};
 #endif
