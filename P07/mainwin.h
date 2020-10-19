@@ -1,9 +1,6 @@
 #ifndef __MAINWIN_H
 #define __MAINWIN_H
 #include <gtkmm.h>
-#include "manga.h"
-#include "label.h"
-#include "store.h"
 #include <string>
 
 class Mainwin: public Gtk::Window {
