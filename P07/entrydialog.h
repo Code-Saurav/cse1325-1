@@ -7,7 +7,6 @@ class EntryDialog: public Gtk::MessageDialog{
         EntryDialog(Gtk::Window& parent, Glib::ustring message, bool use_markup, Gtk::MessageType type, Gtk::ButtonsType buttons);
         void set_text(Glib::ustring text);
         Glib::ustring get_text();
-        Mainwin();
-        virtual ~Mainwin();
+
 }
 #endif
