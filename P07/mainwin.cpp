@@ -39,17 +39,28 @@ Mainwin::Mainwin(): Store{nullptr}{
     insertmenu->append(*menuitem_plant);
     //adding Mulch
     Gtk::MenuItem *menuitem_mulch= Gtk::manage(new Gtk::MenuItem("_Mulch",true));
-    menuitem_mulch->signal_activate().connect([this]{this->on_new_mulch_clic()});
+    menuitem_mulch->signal_activate().connect([this]{this->on_new_mulch_click()});
     insertmenu->append(*menuitem_mulch);
+
+    //displaying
+    display= Gtk::manage(new Gtk::Label());
+    display->set_hexpand(true);
+    display->set_vexpand(true);
+    vbox->add(*display);
+
+    //making everything visible
+    vbox->show_all();
+
+    //start a new dialog;
+    on_new_store_click();
+
 }
 
 Mainwin::~Mainwin(){};
 
 void Mainwin::on_new_store_click(){
-    EntryDialog new_store{*this, "<big>Create new?</big>", true};
-    new_store.set_secondary_text("<b>(1) Tool (2) Plant (3) Mulch (0) Exit?</b>",true);
-    new_store.set_text("");
-    new_store.run();
+    delete store;
+    store= new Store();
 };
 void Mainwin::on_new_tool_click(){
     EntryDialog new_tool{*this, "<big>New Product</big>", true};
@@ -109,9 +120,10 @@ void Mainwin::on_new_mulch_click(){
 void Mainwin::on_view_products_click(){
 
 };
-void Mainwin::on_quit_click(){
 
-};
+void Mainwin::on_quit_click() {
+    close();
+}
 
 
 std::string Mainwin::get_string(std::string prompt) {
@@ -142,6 +154,3 @@ int Mainwin::get_int(std::string prompt) {
 }
 
 
-void Mainwin::on_quit_click() {
-    close();
-}
