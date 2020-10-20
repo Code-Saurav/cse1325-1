@@ -61,6 +61,7 @@ Mainwin::~Mainwin(){};
 void Mainwin::on_new_store_click(){
     delete store;
     store= new Store();
+    on_view_products_click();
 };
 void Mainwin::on_new_tool_click(){
     EntryDialog new_tool{*this, "<big>New Product</big>", true};
@@ -98,9 +99,6 @@ void Mainwin::on_new_plant_click(){
     new_plant_exposure.set_secondary_text("<b>Exposure? (1) Shade (2) Part Sun (3) Sun</b>?",true);
     new_plant_exposure.set_text("");
     new_plant_exposure.run();
-
-
-
 };
 void Mainwin::on_new_mulch_click(){
     EntryDialog new_mulch{*this, "<big>New Product</big>", true};
@@ -118,6 +116,7 @@ void Mainwin::on_new_mulch_click(){
 
 };
 void Mainwin::on_view_products_click(){
+    
 
 };
 
