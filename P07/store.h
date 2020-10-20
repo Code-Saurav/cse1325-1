@@ -15,6 +15,8 @@ class Store {
     void add_product(const Mulch& product);
     int products();
     const Product& product(int index);
+
+
   private:
     std::string _name;
     std::vector<Product*> _products;
