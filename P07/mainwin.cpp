@@ -6,9 +6,9 @@
 Mainwin::Mainwin(): Store{nullptr}{
     set_default_size(400,200);
     set_title("Manga Manager");
-    Gtk::Box *vbox = Gtk::manage(new GtK::Vbox);
+    Gtk::Box *VBox = Gtk::manage(new Gtk::VBox);
     add(*vbox);
-    Gtk::Menubar *menubar = Gtk::manage(new Gtk::Menubar);
+    Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar);
     vbox->pack_start(*menubar, Gtk::PACK_SHRINK,0);
 
     //FILE
@@ -63,7 +63,7 @@ void Mainwin::on_new_store_click(){
     store= new Store();
     on_view_products_click();
 };
-void Mainwin::on_new_tool_click(){
+void Mainwin::on_new_tool_click(){ 
     EntryDialog new_tool{*this, "<big>New Product</big>", true};
     new_tool.set_secondary_text("<b>Name</b>?",true);
     new_tool.set_text("");
@@ -76,7 +76,7 @@ void Mainwin::on_new_tool_click(){
     new_tool_description.set_secondary_text("<b>Description</b>?",true);
     new_tool_description.set_text("");
     new_tool_description.run();
-
+    
 };
 void Mainwin::on_new_plant_click(){
     EntryDialog new_plant{*this, "<big>New Product</big>", true};
@@ -116,7 +116,9 @@ void Mainwin::on_new_mulch_click(){
 
 };
 void Mainwin::on_view_products_click(){
-    
+    for (auto val: store->_products){
+
+    }
 
 };
 
