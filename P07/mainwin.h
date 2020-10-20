@@ -2,6 +2,7 @@
 #define __MAINWIN_H
 #include <gtkmm.h>
 #include <string>
+#include "store.h"
 
 class Mainwin: public Gtk::Window {
     public:
@@ -16,10 +17,10 @@ class Mainwin: public Gtk::Window {
         void on_quit_click();
     private:
         Store* store;
-        Label* display;
+        Gtk::Label* display;
         int get_int(std::string prompt);
         double get_double(std::string prompt);
         std::string get_string(std::string prompt);
-}
+};
 
 #endif

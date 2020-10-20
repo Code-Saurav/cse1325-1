@@ -7,7 +7,7 @@ debug: CXXFLAGS += -g
 debug: manga
 
 mangacli: cli.o store.o product.o plant.o tool.o mulch.o *.h
-	$(CXX) $(CXXFLAGS) cli.o store.o product.o plant.o tool.o mulch.o $(GTXFLAGS) -o manga
+	$(CXX) $(CXXFLAGS) cli.o store.o product.o plant.o tool.o mulch.o -o manga
 
 manga: main.o mainwin.o entrydialog.o store.o product.o plant.o tool.o mulch.o *.h
 	$(CXX) $(CXXFLAGS) main.o mainwin.o store.o product.o plant.o tool.o mulch.o $(GTXFLAGS) -o manga

@@ -1,5 +1,7 @@
 #include "mainwin.h"
 #include <iostream>
+#include <vector>
+#include "entrydialog.h"
 
 Mainwin::Mainwin(): Store{nullptr}{
     set_default_size(400,200);
@@ -41,6 +43,77 @@ Mainwin::Mainwin(): Store{nullptr}{
     insertmenu->append(*menuitem_mulch);
 }
 
+Mainwin::~Mainwin(){};
+
+void Mainwin::on_new_store_click(){
+    EntryDialog new_store{*this, "<big>Create new?</big>", true};
+    new_store.set_secondary_text("<b>(1) Tool (2) Plant (3) Mulch (0) Exit?</b>",true);
+    new_store.set_text("");
+    new_store.run();
+};
+void Mainwin::on_new_tool_click(){
+    EntryDialog new_tool{*this, "<big>New Product</big>", true};
+    new_tool.set_secondary_text("<b>Name</b>?",true);
+    new_tool.set_text("");
+    new_tool.run();
+    EntryDialog new_tool_price{*this, "<big>New Product</big>", true};
+    new_tool_price.set_secondary_text("<b>Price</b>?",true);
+    new_tool_price.set_text("");
+    new_tool_price.run();
+    EntryDialog new_tool_description{*this, "<big>New Product</big>", true};
+    new_tool_description.set_secondary_text("<b>Description</b>?",true);
+    new_tool_description.set_text("");
+    new_tool_description.run();
+
+};
+void Mainwin::on_new_plant_click(){
+    EntryDialog new_plant{*this, "<big>New Product</big>", true};
+    new_plant.set_secondary_text("<b>Name</b>?",true);
+    new_plant.set_text("");
+    new_plant.run();
+    EntryDialog new_plant_price{*this, "<big>New Product</big>", true};
+    new_plant_price.set_secondary_text("<b>Price</b>?",true);
+    new_plant_price.set_text("");
+    new_plant_price.run();
+    EntryDialog new_plant_description{*this, "<big>New Product</big>", true};
+    new_plant_description.set_secondary_text("<b>Description</b>?",true);
+    new_plant_description.set_text("");
+    new_plant_description.run();
+    EntryDialog new_plant_species{*this, "<big>New Product</big>", true};
+    new_plant_species.set_secondary_text("<b>Species</b>?",true);
+    new_plant_species.set_text("");
+    new_plant_species.run();
+    EntryDialog new_plant_exposure{*this, "<big>New Product</big>", true};
+    new_plant_exposure.set_secondary_text("<b>Exposure? (1) Shade (2) Part Sun (3) Sun</b>?",true);
+    new_plant_exposure.set_text("");
+    new_plant_exposure.run();
+
+
+
+};
+void Mainwin::on_new_mulch_click(){
+    EntryDialog new_mulch{*this, "<big>New Product</big>", true};
+    new_mulch.set_secondary_text("<b>Name</b>?",true);
+    new_mulch.set_text("");
+    new_mulch.run();
+    EntryDialog new_mulch_price{*this, "<big>New Product</big>", true};
+    new_mulch_price.set_secondary_text("<b>Price</b>?",true);
+    new_mulch_price.set_text("");
+    new_mulch_price.run();
+    EntryDialog new_mulch_description{*this, "<big>New Product</big>", true};
+    new_mulch_description.set_secondary_text("<b>Description</b>?",true);
+    new_mulch_description.set_text("");
+    new_mulch_description.run();
+
+};
+void Mainwin::on_view_products_click(){
+
+};
+void Mainwin::on_quit_click(){
+
+};
+
+
 std::string Mainwin::get_string(std::string prompt) {
     std::string s;
     std::cout << prompt;
@@ -66,4 +139,9 @@ int Mainwin::get_int(std::string prompt) {
             std::cerr << "ERROR: " << e.what() << std::endl;
         }
     }
+}
+
+
+void Mainwin::on_quit_click() {
+    close();
 }
