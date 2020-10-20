@@ -39,6 +39,31 @@ Mainwin::Mainwin(): Store{nullptr}{
     Gtk::MenuItem *menuitem_mulch= Gtk::manage(new Gtk::MenuItem("_Mulch",true));
     menuitem_mulch->signal_activate().connect([this]{this->on_new_mulch_clic()});
     insertmenu->append(*menuitem_mulch);
+}
 
+std::string Mainwin::get_string(std::string prompt) {
+    std::string s;
+    std::cout << prompt;
+    std::getline(std::cin, s);
+    return s;
+}
 
+double Mainwin::get_double(std::string prompt) {
+    while(true) {
+        try {
+            return std::stod(get_string(prompt));
+        } catch(std::exception& e) {
+            std::cerr << "ERROR: " << e.what() << std::endl;
+        }
+    }
+}
+
+int Mainwin::get_int(std::string prompt) {
+    while(true) {
+        try {
+            return std::stoi(get_string(prompt));
+        } catch(std::exception& e) {
+            std::cerr << "ERROR: " << e.what() << std::endl;
+        }
+    }
 }
