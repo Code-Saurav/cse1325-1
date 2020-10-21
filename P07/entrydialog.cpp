@@ -14,3 +14,4 @@ EntryDialog::EntryDialog(Gtk::Window& parent,
 // Delegate the next two methods to their equivalents in the Entry widget
 void EntryDialog::set_text (const Glib::ustring& text) {entry->set_text(text);}
 Glib::ustring EntryDialog::get_text () const {return entry->get_text();}
+

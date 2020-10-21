@@ -9,7 +9,6 @@ std::ostream& operator<<(std::ostream& ost, const Exposure& exposure) {
     ost << to_string(exposure);
     return ost;
 }
-
 std::string to_string(Exposure exposure) {
     if(exposure == Exposure::SHADE) return "shade";
     else if(exposure == Exposure::PARTSUN) return "part sun";
