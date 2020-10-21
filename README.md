@@ -42,4 +42,9 @@ NetID:<strong> 1001734700</strong><br/>
       <li>Full - credit : <Strong>Done</strong></li>
     </ul>
   </li>
+  <h4>Scrum Assignment</h4>
+    <li>
+    Scrum meeting  1: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P06">P06</a></strong>
+    
+  </li>
 </ol>
