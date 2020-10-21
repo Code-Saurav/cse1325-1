@@ -47,7 +47,7 @@ NetID:<strong> 1001734700</strong><br/>
       Scrum meeting  1: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P06">P06</a></strong>
     </li>
     <li>
-      Scrum meeting  2:<strong><a href="https://github.com/hprabesh/cse1325/tree/master/P07">P07</a></strong>
+      Scrum meeting  2: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P07">P07</a></strong>
     </li>
     <li>
       Scrum meeting  3: <strong><a href="https://github.com/hprabesh/cse1325/tree/master/P08">P07</a></strong>
