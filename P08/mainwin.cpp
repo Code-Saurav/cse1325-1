@@ -90,7 +90,7 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     //              ABOUT
     // Append About to the About 
     Gtk::MenuItem *menuitem_about = Gtk::manage(new Gtk::MenuItem("_About",true));
-    // about->signal_activate().connect([this]{this->on_new_about_click();});
+    menuitem_about->signal_activate().connect([this]{this->on_about_click();});
     inserthelp->append(*menuitem_about);
 
     // /////////////////////////// ////////////////////////////////////////////
@@ -117,6 +117,22 @@ Mainwin::~Mainwin() { }
 void Mainwin::on_new_store_click() {
     delete store;
     store = new Store{"Untitled"};
+}
+
+void Mainwin::on_about_click(){
+    Gtk::AboutDialog dialog;
+    dialog.set_transient_for(*this);
+    dialog.set_program_name("About");
+    auto logo = Gdk::Pixbuf::create_from_file("main.png");
+    dialog.set_logo(logo);
+    dialog.set_version("Version 1.2.1");
+    dialog.set_copyright("Copyright 2020-2021");
+    dialog.set_license_type(Gtk::License::LICENSE_GPL_3_0);
+    std::vector<Glib::ustring > authors= {"Prabesh Humagain , George F. Rice"};
+    dialog.set_authors(authors);
+    std::vector<Glib::ustring> artists={"Logo by UTA"};
+    dialog.set_artists(artists);
+    dialog.run();
 }
 
 void Mainwin::on_new_tool_click() {
