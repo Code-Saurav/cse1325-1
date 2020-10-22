@@ -27,6 +27,28 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
 
+    //      NEW 
+    // Create a new menu
+    Gtk::MenuItem *menuitem_new = Gtk::manage(new Gtk::MenuItem("_New",true));
+    // menuitem_new->signal_activate().connect([this]{this->on_new_click();}); //IMPLEMENT THIS 
+    filemenu->append(*menuitem_new);
+
+    // Save 
+    // Create a save menu 
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save",true));
+    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    filemenu->append(*menuitem_save);
+
+    //Save As
+    Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save As",true));
+    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    filemenu->append(*menuitem_save_as);
+
+    //Open
+    Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));
+    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    filemenu->append(*menuitem_open);
+
     //         Q U I T
     // Append Quit to the File menu
     Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
@@ -57,6 +79,19 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     Gtk::MenuItem *menuitem_mulch = Gtk::manage(new Gtk::MenuItem("_Mulch", true));
     menuitem_mulch->signal_activate().connect([this] {this->on_new_mulch_click();});
     insertmenu->append(*menuitem_mulch);
+
+    //              HELP
+    // Append Help to the menu bar
+    Gtk::MenuItem *menuitem_help = Gtk::manage(new Gtk::MenuItem("_Help",true));
+    menubar->append(*menuitem_help);
+    Gtk::Menu *inserthelp = Gtk::manage(new Gtk::Menu());
+    menuitem_help->set_submenu(*inserthelp);
+
+    //              ABOUT
+    // Append About to the About 
+    Gtk::MenuItem *menuitem_about = Gtk::manage(new Gtk::MenuItem("_About",true));
+    // about->signal_activate().connect([this]{this->on_new_about_click();});
+    inserthelp->append(*menuitem_about);
 
     // /////////////////////////// ////////////////////////////////////////////
     // M A I N   W I N D O W   D I S P L A Y
