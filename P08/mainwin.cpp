@@ -41,12 +41,12 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
     //Save As
     Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save As",true));
-    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    menuitem_save_as->signal_activate().connect([this]{this->on_save_as_click();}); //Implement this
     filemenu->append(*menuitem_save_as);
 
     //Open
     Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));
-    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    menuitem_open->signal_activate().connect([this]{this->on_open_click();}); //Implement this
     filemenu->append(*menuitem_open);
 
     //         Q U I T
@@ -117,6 +117,58 @@ Mainwin::~Mainwin() { }
 void Mainwin::on_new_store_click() {
     delete store;
     store = new Store{"Untitled"};
+}
+
+void Mainwin::on_save_as_click(){
+    Gtk::FileChooserDialog dialog("Please choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_SAVE);
+    dialog.set_transient_for(*this);
+
+    auto filter_manga = Gtk::FileFilter::create();
+    filter_manga->set_name("MANGA File");
+    filter_manga->add_pattern("*.manga");
+    dialog.add_filter(filter_manga);
+
+    auto filter_any = Gtk::FileFilter::create();
+    filter_any->set_name("Any files");
+    filter_any->add_pattern("x");
+    dialog.add_filter(filter_any);
+
+    dialog.set_filename("untitled.manga");
+
+    dialog.add_button("_Cancel",0);
+    dialog.add_button("_Save",1);
+
+    int result = dialog.run();
+
+    if (result==1){
+        std::cout<<"File Opened";
+    }
+}
+
+void Mainwin::on_open_click(){
+    Gtk::FileChooserDialog dialog("Please choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_OPEN);
+    dialog.set_transient_for(*this);
+
+    auto filter_manga = Gtk::FileFilter::create();
+    filter_manga->set_name("MANGA File");
+    filter_manga->add_pattern("*.manga");
+    dialog.add_filter(filter_manga);
+
+    auto filter_any = Gtk::FileFilter::create();
+    filter_any->set_name("Any files");
+    filter_any->add_pattern("x");
+    dialog.add_filter(filter_any);
+
+    dialog.set_filename("untitled.manga");
+
+    dialog.add_button("_Cancel",0);
+    dialog.add_button("_Open",1);
+
+    int result = dialog.run();
+
+    if (result==1){
+        std::cout<<"File Opened";
+    }
 }
 
 void Mainwin::on_about_click(){
