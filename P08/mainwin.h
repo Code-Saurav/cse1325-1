@@ -10,15 +10,15 @@ class Mainwin : public Gtk::Window {
         virtual ~Mainwin();
     protected:
         void on_new_store_click();     // Create a new store
+        void on_save_click();          // Save the Game
+        void on_save_as_click();       // Save as game
+        void on_open_click();          // Open the game
         void on_new_tool_click();      // Create a new tool product
         void on_new_plant_click();     // Create a new plant product
         void on_new_mulch_click();     // Create a new mulch product
         void on_view_products_click(); // Update the display
-        void on_quit_click();          // Exit the game
-        void on_save_click();          // Save the Game
-        void on_save_as_click();       // Save as game
         void on_about_click();         // Click About Game
-        void on_open_click();          // Open the game
+        void on_quit_click();          // Exit the game
 
 
     private:

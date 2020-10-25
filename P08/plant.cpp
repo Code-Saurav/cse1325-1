@@ -16,3 +16,10 @@ std::string to_string(Exposure exposure) {
     else throw std::out_of_range("Invalid Exposure value");
 }
 
+// Plant::Plant(std::istream& ist){
+//     ist>>_species>>to_string(_exposure);
+// }
+
+void Plant::save(std::ostream& ost) {
+    ost<<_exposure<<std::endl;
+}

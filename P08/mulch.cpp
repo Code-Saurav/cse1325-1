@@ -9,6 +9,13 @@ std::ostream& operator<<(std::ostream& ost, const Material& material) {
     ost << to_string(material);
     return ost;
 }
+// Mulch::Mulch(std::istream& ist){
+//     ist>>Product(ist)>>_volume>>_material;
+// }
+
+void Mulch::save(std::ostream& ost) {
+    ost<<_volume<<'/'<<_material<<'/'<<std::endl;
+}
 std::string to_string(Material material) {
     if(material == Material::RUBBER) return "rubber";
     else if(material == Material::PINE) return "pine";
@@ -16,4 +23,3 @@ std::string to_string(Material material) {
     else if(material == Material::HARDWOOD) return "hardwood";
     else throw std::out_of_range("Invalid Material value");
 }
-

@@ -141,6 +141,13 @@ void Mainwin::on_save_as_click(){
     int result = dialog.run();
 
     if (result==1){
+        try{
+            std::ofstream ofs{dialog.get_filename()};
+            store->save(ofs);
+
+        } catch(std::exception e){
+            Gtk::MessageDialog{*this,"Unable to open game"}.run();
+        }
         std::cout<<"File Opened";
     }
 }
