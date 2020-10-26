@@ -18,8 +18,11 @@ std::string to_string(Exposure exposure) {
 
 Plant::Plant(std::istream& ist):Product{ist}{
     std::string exposure_string;
+    std::getline(ist,_species);
+    std::getline(ist,exposure_string);
+    ist.ignore(32767,'\n');
     
-    ist>>_species>>exposure_string;
+    // ist>>_species>>exposure_string;
     if (exposure_string.compare("shade")){
         _exposure=Exposure::SHADE;
     } else if (exposure_string.compare("part sun")){
@@ -32,5 +35,7 @@ Plant::Plant(std::istream& ist):Product{ist}{
 }
 
 void Plant::save(std::ostream& ost) {
+    ost<<"plant"<<'\n';
+    Product::save(ost);
     ost<<_exposure<<std::endl;
 }

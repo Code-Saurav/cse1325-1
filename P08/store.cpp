@@ -3,20 +3,38 @@
 Store::Store(std::string name) : _name{name} { }
 Store::Store(std::istream& ist){
     std::string store_name;
-    int size_of_product;
     getline(ist,store_name,'\n');
+    // ist.ignore(32767,'\n');
+    int size_of_product;
     ist>>size_of_product;
+    
     std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
-    // ist>>name;
-    // std::cout<<name;
+    int price =0;
+    for (std::string line;getline(ist, line);){
+        if (line.compare("tool")){
+            _products.push_back(new Tool{ist});
+
+        } else if (line.compare("plant")){
+            _products.push_back(new  Plant{ist});
+            
+        } else if (line.compare("mulch")){
+            _products.push_back(new  Mulch{ist});
+            
+        } else{
+            throw std::out_of_range("Invalid type");
+        }
+        // ist.ignore(32767,'\n');
+    }
     
 }
+// (new Tool{name, price, description}));
 
 void Store::save(std::ostream& ost){
     int j=0;
     ost<<_name<<'\n'<<products()<<'\n';
     while (j<products()){
-        ost<<typeid(product(j)).name()<<'\n'<<product(j++)<<'\n'; //typeid(product()).name() returns the size of the character of the name of the class and name of the class 
+        _products[j]->save(ost);
+        j++;
     }
     ost<<std::endl;
 }

@@ -11,8 +11,8 @@ std::ostream& operator<<(std::ostream& ost, const Material& material) {
 }
 Mulch::Mulch(std::istream& ist):Product{ist}{
     std::string material_string;
-
     ist>>_volume>>material_string;
+    ist.ignore(32767,'\n');
     if (material_string.compare("rubber")){
         _material=Material::RUBBER;
     } else if (material_string.compare("pine")){
@@ -27,7 +27,9 @@ Mulch::Mulch(std::istream& ist):Product{ist}{
 }
 
 void Mulch::save(std::ostream& ost) {
-    ost<<_volume<<'/'<<_material<<'/'<<std::endl;
+    ost<<"mulch"<<'\n';
+    Product::save(ost);
+    ost<<_volume<<'\n'<<_material<<'\n'<<std::endl;
 }
 std::string to_string(Material material) {
     if(material == Material::RUBBER) return "rubber";
