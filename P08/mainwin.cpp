@@ -3,24 +3,15 @@
 
 Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
-    // /////////////////
-    // G U I   S E T U P
-    // /////////////////
-
     set_default_size(640, 480);
-    set_title("Manga Magic");
-
-    // Put a vertical box container as the Window contents
+    set_title("Manga");
     Gtk::Box *vbox = Gtk::manage(new Gtk::VBox);
     add(*vbox);
 
-    // /////// ////////////////////////////////////////////////////////////////
-    // M E N U
-    // Add a menu bar as the top item in the vertical box
     Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar);
     vbox->pack_start(*menubar, Gtk::PACK_SHRINK, 0);
 
-    //     F I L E
+    // File menu
     // Create a File menu and add to the menu bar
     Gtk::MenuItem *menuitem_file = Gtk::manage(new Gtk::MenuItem("_File", true));
     menubar->append(*menuitem_file);
@@ -121,18 +112,7 @@ void Mainwin::on_new_store_click() {
     store = new Store{store_name};
     on_view_products_click();
 }
-void Mainwin::on_save_click(){
-    try{
-        std::ofstream ofs;
-        std::cout<<filename;
-        ofs.open(filename);
-        store->save(ofs);
-        ofs.close();
 
-    } catch (std::exception e){
-        Gtk::MessageDialog{*this,"Unable to Save FIle"}.run();
-    }
-}
 
 void Mainwin::on_save_as_click(){
     Gtk::FileChooserDialog dialog("Please choose a file",
@@ -149,9 +129,8 @@ void Mainwin::on_save_as_click(){
     filter_any->add_pattern("*");
     dialog.add_filter(filter_any);
 
-    dialog.set_filename("untitled.manga");
-    filename= dialog.get_filename();
-
+    dialog.set_filename("temp.manga");
+    
     dialog.add_button("_Cancel",0);
     dialog.add_button("_Save",1);
 
@@ -160,6 +139,8 @@ void Mainwin::on_save_as_click(){
     if (result==1){
         try{
             std::ofstream ofs{dialog.get_filename()};
+            filename= dialog.get_filename();
+            std::cout<<'\n'<<filename;
             store->save(ofs);
 
         } catch(std::exception e){
@@ -168,6 +149,14 @@ void Mainwin::on_save_as_click(){
         std::cout<<"\nFile has been saved \n";
     }
     std::cout<<filename;
+}
+void Mainwin::on_save_click(){
+    
+    std::ofstream ofs{filename};
+    std::cout<<filename;
+    store->save(ofs);
+
+    
 }
 
 void Mainwin::on_open_click(){
@@ -195,6 +184,7 @@ void Mainwin::on_open_click(){
         try{
             delete store;
             std::ifstream ifs{dialog.get_filename()};
+            filename= dialog.get_filename();
             store = new Store{ifs};
             bool b;
             ifs >> b;
