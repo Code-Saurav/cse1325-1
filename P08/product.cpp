@@ -17,9 +17,10 @@ int Product::_nextsn = 0;
 Product::Product(std::istream& ist){
     std::getline(ist,_name,'\n');
     ist>>_price;
-    ist.ignore(32767,'\n');
+    ist.ignore(327678,'\n');
     std::getline(ist,_description,'\n');
-    // std::cout<<_price;
+    // ist>>_nextsn;
+    // ist.ignore(32768,'\n');
 }
 
 void Product::save(std::ostream& ost){

@@ -37,5 +37,5 @@ Plant::Plant(std::istream& ist):Product{ist}{
 void Plant::save(std::ostream& ost) {
     ost<<"plant"<<'\n';
     Product::save(ost);
-    ost<<_exposure<<std::endl;
+    ost<<_species<<'\n'<<_exposure<<std::endl;
 }

@@ -7,24 +7,23 @@ Store::Store(std::istream& ist){
     
     int size_of_product;
     ist>>size_of_product;
+    ist.ignore(32768,'\n');
+    
     
     std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
     int price =0;
     std::string line;
     if(ist.good()){
         while (getline(ist,line)){
-     
-            if (line.compare("tool")){
+            if (line==("tool")){
                 _products.push_back(new Tool{ist});
-            } else if (line.compare("plant")){
+            } else if (line==("plant")){
                 _products.push_back(new  Plant{ist});
                 
-            } else if (line.compare("mulch")){
+            } else if (line==("mulch")){
                 _products.push_back(new  Mulch{ist});
                 
-            } else{
-                throw std::out_of_range("Invalid type");
-            }
+            } else{}
         }
     }
     

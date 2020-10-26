@@ -12,25 +12,23 @@ std::ostream& operator<<(std::ostream& ost, const Material& material) {
 Mulch::Mulch(std::istream& ist):Product{ist}{
     std::string material_string;
     ist>>_volume;
-    ist.ignore(32767,'\n');
+    ist.ignore(3276,'\n');
     std::getline(ist,material_string);
-    if (material_string.compare("rubber")){
+    if (material_string==("rubber")){
         _material=Material::RUBBER;
-    } else if (material_string.compare("pine")){
+    } else if (material_string==("pine")){
         _material=Material::PINE;
-    } else if (material_string.compare("cedar")){
+    } else if (material_string==("cedar")){
         _material=Material::CEDAR;
-    } else if (material_string.compare("hardwood")){
+    } else {
         _material=Material::HARDWOOD;
-    } else{
-        throw std::out_of_range("Invalid Material value");
-    }
+    } 
 }
 
 void Mulch::save(std::ostream& ost) {
     ost<<"mulch"<<'\n';
     Product::save(ost);
-    ost<<_volume<<'\n'<<_material<<'\n'<<std::endl;
+    ost<<_volume<<'\n'<<::to_string(_material)<<'\n'<<std::endl;
 }
 std::string to_string(Material material) {
     if(material == Material::RUBBER) return "rubber";

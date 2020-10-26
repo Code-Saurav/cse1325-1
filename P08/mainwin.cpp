@@ -119,6 +119,7 @@ void Mainwin::on_new_store_click() {
     std::string store_name = get_string("Please enter your store Name?");
     if (store_name=="") store_name="Untitled";
     store = new Store{store_name};
+    on_view_products_click();
 }
 void Mainwin::on_save_click(){
     try{
@@ -200,7 +201,7 @@ void Mainwin::on_open_click(){
             on_view_products_click();
             
         }catch (std::exception e){
-            Gtk::MessageDialog{*this,"Unable to open file"}.run();
+            Gtk::MessageDialog{*this,"Error opening the file"}.run();
         }
 
     }
