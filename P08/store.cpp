@@ -1,5 +1,5 @@
 #include "store.h"
-
+#include <typeinfo>
 Store::Store(std::string name) : _name{name} { }
 Store::Store(std::istream& ist){
     std::string store_name;
@@ -16,7 +16,7 @@ void Store::save(std::ostream& ost){
     int j=0;
     ost<<_name<<'\n'<<products()<<'\n';
     while (j<products()){
-        ost<<product(j++)<<'\n';
+        ost<<typeid(product(j)).name()<<'\n'<<product(j++)<<'\n'; //typeid(product()).name() returns the size of the character of the name of the class and name of the class 
     }
     ost<<std::endl;
 }
