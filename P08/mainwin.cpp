@@ -130,7 +130,7 @@ void Mainwin::on_save_as_click(){
 
     auto filter_any = Gtk::FileFilter::create();
     filter_any->set_name("Any files");
-    filter_any->add_pattern("x");
+    filter_any->add_pattern("*");
     dialog.add_filter(filter_any);
 
     dialog.set_filename("untitled.manga");
@@ -146,9 +146,9 @@ void Mainwin::on_save_as_click(){
             store->save(ofs);
 
         } catch(std::exception e){
-            Gtk::MessageDialog{*this,"Unable to open game"}.run();
+            Gtk::MessageDialog{*this,"Unable to save file"}.run();
         }
-        std::cout<<"File Opened";
+        std::cout<<"\nFile has been saved \n";
     }
 }
 
@@ -163,7 +163,7 @@ void Mainwin::on_open_click(){
 
     auto filter_any = Gtk::FileFilter::create();
     filter_any->set_name("Any files");
-    filter_any->add_pattern("x");
+    filter_any->add_pattern("*");
     dialog.add_filter(filter_any);
 
     dialog.set_filename("untitled.manga");
@@ -174,8 +174,21 @@ void Mainwin::on_open_click(){
     int result = dialog.run();
 
     if (result==1){
-        std::cout<<"File Opened";
+        try{
+            delete store;
+            std::ifstream ifs{dialog.get_filename()};
+            store = new Store{ifs};
+            bool b;
+            ifs >> b;
+            on_view_products_click();
+            
+        }catch (std::exception e){
+            Gtk::MessageDialog{*this,"Unable to open file"}.run();
+        }
+
     }
+
+std::cout<<"File Opened";
 }
 
 void Mainwin::on_about_click(){

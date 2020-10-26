@@ -16,9 +16,20 @@ std::string to_string(Exposure exposure) {
     else throw std::out_of_range("Invalid Exposure value");
 }
 
-// Plant::Plant(std::istream& ist){
-//     ist>>_species>>to_string(_exposure);
-// }
+Plant::Plant(std::istream& ist):Product{ist}{
+    std::string exposure_string;
+    
+    ist>>_species>>exposure_string;
+    if (exposure_string.compare("shade")){
+        _exposure=Exposure::SHADE;
+    } else if (exposure_string.compare("part sun")){
+        _exposure=Exposure::PARTSUN;
+    } else if (exposure_string.compare("full sun")){
+        _exposure=Exposure::SUN;
+    } else {
+        throw std::out_of_range("Invalid Exposure value");
+    }
+}
 
 void Plant::save(std::ostream& ost) {
     ost<<_exposure<<std::endl;

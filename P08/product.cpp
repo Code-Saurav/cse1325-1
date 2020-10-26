@@ -13,10 +13,13 @@ std::ostream& operator<<(std::ostream& ost, const Product& product) {
     return ost;
 }
 int Product::_nextsn = 0;
-// Product::Product(std::istream& ist){
-//     ist>>_name>>_price>>_description;
-// }
+
+Product::Product(std::istream& ist){
+    ist>>_name>>_price>>_description;
+    ist.ignore(32767,'\n');
+}
 
 void Product::save(std::ostream& ost){
-    ost<<_name<<'/'<<_price<<'/'<<_description<<std::endl;
+
+    ost<<_name<<'\n'<<_price<<'\n'<<_description<<std::endl;
 }

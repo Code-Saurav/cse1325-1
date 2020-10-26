@@ -3,10 +3,10 @@
 Tool::Tool(std::string name, double price, std::string description)
     : Product(name, price, description) { }
 
-// Tool::Tool(std::istream& ist){
-//     ist>>Product(ist);
-// }
+Tool::Tool(std::istream& ist):Product{ist}{
+    
+}
 
 void Tool::save(std::ostream& ost){
-    ost<<std::endl;
+    ost<<"tool"<<'\n'<<std::endl;
 }

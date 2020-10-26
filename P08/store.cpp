@@ -1,12 +1,20 @@
 #include "store.h"
 
 Store::Store(std::string name) : _name{name} { }
-// Store::Store(std::istream& ist){
-//     ist>>_name>>_products[0];
-// }
+Store::Store(std::istream& ist){
+    std::string store_name;
+    int size_of_product;
+    getline(ist,store_name,'\n');
+    ist>>size_of_product;
+    std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
+    // ist>>name;
+    // std::cout<<name;
+    
+}
 
 void Store::save(std::ostream& ost){
     int j=0;
+    ost<<_name<<'\n'<<products()<<'\n';
     while (j<products()){
         ost<<product(j++)<<'\n';
     }
