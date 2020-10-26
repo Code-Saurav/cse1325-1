@@ -4,16 +4,16 @@ Store::Store(std::string name) : _name{name} { }
 Store::Store(std::istream& ist){
     std::string store_name;
     getline(ist,store_name,'\n');
-    // ist.ignore(32767,'\n');
+    
     int size_of_product;
     ist>>size_of_product;
     
     std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
     int price =0;
     for (std::string line;getline(ist, line);){
+        std::cout<<line<<std::endl;
         if (line.compare("tool")){
             _products.push_back(new Tool{ist});
-
         } else if (line.compare("plant")){
             _products.push_back(new  Plant{ist});
             

@@ -30,23 +30,23 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     //      NEW 
     // Create a new menu
     Gtk::MenuItem *menuitem_new = Gtk::manage(new Gtk::MenuItem("_New",true));
-    // menuitem_new->signal_activate().connect([this]{this->on_new_click();}); //IMPLEMENT THIS 
+    menuitem_new->signal_activate().connect([this]{this->on_new_store_click();}); 
     filemenu->append(*menuitem_new);
 
     // Save 
     // Create a save menu 
     Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save",true));
-    // menutiem_save->signal_activate().connect([this]{this->on_new_save_click();}); //Implement this
+    menuitem_save->signal_activate().connect([this]{this->on_save_click();}); 
     filemenu->append(*menuitem_save);
 
     //Save As
     Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save As",true));
-    menuitem_save_as->signal_activate().connect([this]{this->on_save_as_click();}); //Implement this
+    menuitem_save_as->signal_activate().connect([this]{this->on_save_as_click();}); 
     filemenu->append(*menuitem_save_as);
 
     //Open
     Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));
-    menuitem_open->signal_activate().connect([this]{this->on_open_click();}); //Implement this
+    menuitem_open->signal_activate().connect([this]{this->on_open_click();}); 
     filemenu->append(*menuitem_open);
 
     //         Q U I T
@@ -116,15 +116,30 @@ Mainwin::~Mainwin() { }
 
 void Mainwin::on_new_store_click() {
     delete store;
-    store = new Store{"Untitled"};
+    std::string store_name = get_string("Please enter your store Name?");
+    if (store_name=="") store_name="Untitled";
+    store = new Store{store_name};
+}
+void Mainwin::on_save_click(){
+    try{
+        std::ofstream ofs;
+        std::cout<<filename;
+        ofs.open(filename);
+        store->save(ofs);
+        ofs.close();
+
+    } catch (std::exception e){
+        Gtk::MessageDialog{*this,"Unable to Save FIle"}.run();
+    }
 }
 
 void Mainwin::on_save_as_click(){
-    Gtk::FileChooserDialog dialog("Please choose a file", Gtk::FileChooserAction::FILE_CHOOSER_ACTION_SAVE);
+    Gtk::FileChooserDialog dialog("Please choose a file",
+          Gtk::FileChooserAction::FILE_CHOOSER_ACTION_SAVE);
     dialog.set_transient_for(*this);
 
     auto filter_manga = Gtk::FileFilter::create();
-    filter_manga->set_name("MANGA File");
+    filter_manga->set_name("MANGA");
     filter_manga->add_pattern("*.manga");
     dialog.add_filter(filter_manga);
 
@@ -134,6 +149,7 @@ void Mainwin::on_save_as_click(){
     dialog.add_filter(filter_any);
 
     dialog.set_filename("untitled.manga");
+    filename= dialog.get_filename();
 
     dialog.add_button("_Cancel",0);
     dialog.add_button("_Save",1);
@@ -150,6 +166,7 @@ void Mainwin::on_save_as_click(){
         }
         std::cout<<"\nFile has been saved \n";
     }
+    std::cout<<filename;
 }
 
 void Mainwin::on_open_click(){
