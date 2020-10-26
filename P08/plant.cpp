@@ -20,7 +20,7 @@ Plant::Plant(std::istream& ist):Product{ist}{
     std::string exposure_string;
     std::getline(ist,_species);
     std::getline(ist,exposure_string);
-    ist.ignore(32767,'\n');
+    // ist.ignore(32767,'\n');
     
     // ist>>_species>>exposure_string;
     if (exposure_string.compare("shade")){

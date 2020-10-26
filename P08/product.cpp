@@ -15,14 +15,11 @@ std::ostream& operator<<(std::ostream& ost, const Product& product) {
 int Product::_nextsn = 0;
 
 Product::Product(std::istream& ist){
-    std::string name, description;
-    double price;
-    ist.ignore(32767,'\n');
     std::getline(ist,_name,'\n');
     ist>>_price;
+    ist.ignore(32767,'\n');
     std::getline(ist,_description,'\n');
-    // ist.ignore(32767,'\n');
-    std::cout<<_price;
+    // std::cout<<_price;
 }
 
 void Product::save(std::ostream& ost){

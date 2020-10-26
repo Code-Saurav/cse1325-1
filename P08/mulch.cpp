@@ -11,8 +11,9 @@ std::ostream& operator<<(std::ostream& ost, const Material& material) {
 }
 Mulch::Mulch(std::istream& ist):Product{ist}{
     std::string material_string;
-    ist>>_volume>>material_string;
+    ist>>_volume;
     ist.ignore(32767,'\n');
+    std::getline(ist,material_string);
     if (material_string.compare("rubber")){
         _material=Material::RUBBER;
     } else if (material_string.compare("pine")){
