@@ -6,6 +6,7 @@
 class Tool : public Product {
   public:
     Tool(std::string name, double price, std::string description);
+    
 };
 
 #endif
