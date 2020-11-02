@@ -1,6 +1,7 @@
 #include "mainwin.h"
 
 #include "entrydialog.h"
+#include "multientrydialog.h"
 
 Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
@@ -271,6 +272,13 @@ void Mainwin::on_new_mulch_click(){
     } catch(std::exception& e) {
     }  
 };
+
+std::vector <std::string> Mainwin::get_string_multigrid(){
+    MultiEntryDialog to_enter(*this, "<big>Customer Input Menu</big>", true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);
+    if(to_enter.run() == Gtk::RESPONSE_CANCEL) throw std::runtime_error{"CANCEL"};
+    std::vector <std::string> a {to_enter.get_name_text(),to_enter.get_phone_text(),to_enter.get_email_text()};
+    return a;
+}
 void Mainwin::on_new_customer_click(){
     try{
         // name_entry.set_text("Hello");
@@ -291,9 +299,14 @@ void Mainwin::on_new_customer_click(){
 
         // dialog->add(entry);
         // dialog->show();
-        std::string name=get_string("Name ");
-        std::string phone=get_string("Phone ");
-        std::string email=get_string("Email ");
+        std::vector <std::string> a = get_string_multigrid();
+        std::string name=a[0];
+        std::string phone=a[1];
+        std::string email=a[2];
+
+        // std::string name=get_string("Name ");
+        // std::string phone=get_string("Phone ");
+        // std::string email=get_string("Email ");
 
         Customer temp(name,phone,email);
         store->add_customer(temp);
@@ -305,6 +318,8 @@ void Mainwin::on_new_customer_click(){
     }
 
 } 
+
+
 
 //for displaying the customers;
 void Mainwin::on_view_customer_click(){
@@ -339,7 +354,6 @@ void Mainwin::on_view_products_click(){
 void Mainwin::on_quit_click() {
     close();
 }
-
 
 std::string Mainwin::get_string(std::string prompt) {
     EntryDialog to_enter(*this, "<big>Input Menu</big>", true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);

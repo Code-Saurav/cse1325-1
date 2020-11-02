@@ -4,6 +4,7 @@
 #include <gtkmm.h>
 #include "store.h"
 #include "customer.h"
+#include <vector>
 
 class Mainwin : public Gtk::Window {
     public:
@@ -37,6 +38,7 @@ class Mainwin : public Gtk::Window {
         int get_int(std::string prompt);
         double get_double(std::string prompt);
         std::string get_string(std::string prompt);
+        std::vector<std::string> get_string_multigrid();
         std::string filename;
         Store* store;               // The currently active store
         Gtk::Label* display;        // Status message display
