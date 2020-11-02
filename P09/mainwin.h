@@ -23,6 +23,15 @@ class Mainwin : public Gtk::Window {
         void on_about_click();         // Click About Game
         void on_quit_click();          // Exit the game
 
+        // Gtk::Grid m_Grid;
+        // Gtk::Label name_entry_label;
+        // Gtk::Entry name_entry;
+
+        // Gtk::Label email_entry_label;
+        // Gtk::Entry email_entry;
+
+        // Gtk::Label phone_entry_label;
+        // Gtk::Entry phone_entry;
 
     private:
         int get_int(std::string prompt);

@@ -8,7 +8,7 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     set_title("Manga Manager");
     Gtk::Box *vbox = Gtk::manage(new Gtk::VBox);
     add(*vbox);
-
+    
     //menubar
     Gtk::MenuBar *menubar = Gtk::manage(new Gtk::MenuBar);
     vbox->pack_start(*menubar, Gtk::PACK_SHRINK,0);
@@ -273,7 +273,10 @@ void Mainwin::on_new_mulch_click(){
 };
 void Mainwin::on_new_customer_click(){
     try{
-        Gtk::MessageDialog(*this,"")Gtk::Entry{}.run();
+        // name_entry.set_text("Hello");
+        
+        // Gtk::MessageDialog *msg = new Gtk::MessageDialog (*this, "My message!",true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);
+        // msg->show();
         // Gtk::Entry *a= Gtk::manage(new Gtk::Entry);
         // a->show();
         // Gtk::Dialog *dialog = manage ( new Gtk::Dialog() );
@@ -288,12 +291,12 @@ void Mainwin::on_new_customer_click(){
 
         // dialog->add(entry);
         // dialog->show();
-        // std::string name=get_string("Name ");
-        // std::string phone=get_string("Phone ");
-        // std::string email=get_string("Email ");
+        std::string name=get_string("Name ");
+        std::string phone=get_string("Phone ");
+        std::string email=get_string("Email ");
 
-        // Customer temp(name,phone,email);
-        // store->add_customer(temp);
+        Customer temp(name,phone,email);
+        store->add_customer(temp);
         on_view_customer_click();
         
 
