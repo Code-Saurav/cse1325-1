@@ -6,14 +6,16 @@ all: manga
 debug: CXXFLAGS += -g
 debug: manga
 
-manga: main.o mainwin.o entrydialog.o store.o product.o plant.o tool.o mulch.o *.h
-	$(CXX) $(CXXFLAGS) main.o mainwin.o entrydialog.o store.o product.o plant.o tool.o mulch.o $(GTXFLAGS) -o manga
+manga: main.o mainwin.o entrydialog.o customer.o store.o product.o plant.o tool.o mulch.o *.h
+	$(CXX) $(CXXFLAGS) main.o mainwin.o entrydialog.o customer.o store.o product.o plant.o tool.o mulch.o $(GTXFLAGS) -o manga
 main.o: main.cpp *.h
 	$(CXX) $(CXXFLAGS) -c main.cpp $(GTXFLAGS) -o main.o
 mainwin.o: mainwin.cpp *.h
 	$(CXX) $(CXXFLAGS) -c mainwin.cpp $(GTXFLAGS) -o mainwin.o
 entrydialog.o: entrydialog.cpp *.h
 	$(CXX) $(CXXFLAGS) -c entrydialog.cpp $(GTXFLAGS) -o entrydialog.o
+customer.o: customer.cpp *.h
+	$(CXX) $(CXXFLAGS) -c customer.cpp -o customer.o
 cli.o: cli.cpp *.h
 	$(CXX) $(CXXFLAGS) -c cli.cpp -o cli.o
 store.o: store.cpp *.h

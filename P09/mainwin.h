@@ -3,6 +3,7 @@
 
 #include <gtkmm.h>
 #include "store.h"
+#include "customer.h"
 
 class Mainwin : public Gtk::Window {
     public:
@@ -17,6 +18,8 @@ class Mainwin : public Gtk::Window {
         void on_new_plant_click();     // Create a new plant product
         void on_new_mulch_click();     // Create a new mulch product
         void on_view_products_click(); // Update the display
+        void on_new_customer_click();  // Observer for our new customers button
+        void on_view_customer_click(); // Display the customer 
         void on_about_click();         // Click About Game
         void on_quit_click();          // Exit the game
 

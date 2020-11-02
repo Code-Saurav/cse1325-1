@@ -4,7 +4,7 @@
 
 Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
-    set_default_size(400,200);
+    set_default_size(600,600);
     set_title("Manga Manager");
     Gtk::Box *vbox = Gtk::manage(new Gtk::VBox);
     add(*vbox);
@@ -20,6 +20,32 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     Gtk::Menu *filemenu = Gtk::manage(new Gtk::Menu());
     menuitem_file->set_submenu(*filemenu);
 
+ //      NEW 
+    // Create a new menu
+    Gtk::MenuItem *menuitem_new = Gtk::manage(new Gtk::MenuItem("_New",true));
+    menuitem_new->signal_activate().connect([this]{this->on_new_store_click();}); 
+    filemenu->append(*menuitem_new);
+
+    // Save 
+    // Create a save menu 
+    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save",true));
+    menuitem_save->signal_activate().connect([this]{this->on_save_click();}); 
+    filemenu->append(*menuitem_save);
+
+    //Save As
+    Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save As",true));
+    menuitem_save_as->signal_activate().connect([this]{this->on_save_as_click();}); 
+    filemenu->append(*menuitem_save_as);
+
+    //Open
+    Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));
+    menuitem_open->signal_activate().connect([this]{this->on_open_click();}); 
+    filemenu->append(*menuitem_open);
+    
+    //Adding quit 
+    Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
+    menuitem_quit->signal_activate().connect([this] {this->on_quit_click();});
+    filemenu->append(*menuitem_quit);
     
 
     //creating a insert menu and adding to the menu bar
@@ -41,33 +67,25 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     menuitem_mulch->signal_activate().connect([this]{this->on_new_mulch_click();});
     insertmenu->append(*menuitem_mulch);
 
-    
+    Gtk::MenuItem *insert_customer = Gtk::manage(new Gtk::MenuItem{"_Customer",true});
+    insert_customer->signal_activate().connect([this]{this->on_new_customer_click();}); //yet to be done
+    insertmenu->append(*insert_customer);
+   
+    //VIEW
+    Gtk::MenuItem *view_menu = Gtk::manage(new Gtk::MenuItem{"_View",true});
+    menubar->append(*view_menu);
+    Gtk::Menu *view = Gtk::manage(new Gtk::Menu()); 
+    view_menu->set_submenu(*view);
 
-    //      NEW 
-    // Create a new menu
-    Gtk::MenuItem *menuitem_new = Gtk::manage(new Gtk::MenuItem("_New",true));
-    menuitem_new->signal_activate().connect([this]{this->on_new_store_click();}); 
-    filemenu->append(*menuitem_new);
+    //View Customer
+    Gtk::MenuItem *customers = Gtk::manage(new Gtk::MenuItem{"_Customers",true});
+    customers->signal_activate().connect([this]{this->on_view_customer_click();});
+    view->append(*customers);
 
-    // Save 
-    // Create a save menu 
-    Gtk::MenuItem *menuitem_save = Gtk::manage(new Gtk::MenuItem("_Save",true));
-    menuitem_save->signal_activate().connect([this]{this->on_save_click();}); 
-    filemenu->append(*menuitem_save);
-
-    //Save As
-    Gtk::MenuItem *menuitem_save_as = Gtk::manage(new Gtk::MenuItem("_Save As",true));
-    menuitem_save_as->signal_activate().connect([this]{this->on_save_as_click();}); 
-    filemenu->append(*menuitem_save_as);
-
-    //Open
-    Gtk::MenuItem *menuitem_open = Gtk::manage(new Gtk::MenuItem("_Open",true));
-    menuitem_open->signal_activate().connect([this]{this->on_open_click();}); 
-    filemenu->append(*menuitem_open);
-//Adding quit 
-    Gtk::MenuItem *menuitem_quit = Gtk::manage(new Gtk::MenuItem("_Quit", true));
-    menuitem_quit->signal_activate().connect([this] {this->on_quit_click();});
-    filemenu->append(*menuitem_quit);
+    //View Products
+    Gtk::MenuItem *product = Gtk::manage(new Gtk::MenuItem{"_Products",true});
+    product->signal_activate().connect([this]{this->on_view_products_click();});
+    view->append(*product);
 
 
     //              HELP
@@ -216,9 +234,7 @@ void Mainwin::on_new_tool_click(){
         store->add_product(*(new Tool{name, price, description}));
         on_view_products_click();
     } catch(std::exception& e) {
-
     }
-    
 };
 void Mainwin::on_new_plant_click(){
     try {
@@ -253,21 +269,66 @@ void Mainwin::on_new_mulch_click(){
         store->add_product(*(new Mulch{name, price, description, volume, material}));
         on_view_products_click();
     } catch(std::exception& e) {
-    }
-    
+    }  
 };
+void Mainwin::on_new_customer_click(){
+    try{
+        Gtk::MessageDialog(*this,"")Gtk::Entry{}.run();
+        // Gtk::Entry *a= Gtk::manage(new Gtk::Entry);
+        // a->show();
+        // Gtk::Dialog *dialog = manage ( new Gtk::Dialog() );
+        // dialog->set_title("Add Text");
+
+        // Gtk::Entry entry;
+
+        // entry.set_activates_default(true);
+        // entry.set_max_length(50);
+        // entry.set_text("hello world");
+        // entry.select_region(0, entry.get_text_length());
+
+        // dialog->add(entry);
+        // dialog->show();
+        // std::string name=get_string("Name ");
+        // std::string phone=get_string("Phone ");
+        // std::string email=get_string("Email ");
+
+        // Customer temp(name,phone,email);
+        // store->add_customer(temp);
+        on_view_customer_click();
+        
+
+    }catch(std::exception& e){
+
+    }
+
+} 
+
+//for displaying the customers;
+void Mainwin::on_view_customer_click(){
+    std::string s ="Your store doesn't have any customer for now :(";
+    std::string b="Your store has following customers\n\n-----------------------";
+    std::string a="";
+    for (int i=0; i< store->customers();i++){
+        std::ostringstream oss;
+        oss<<store->customer(i)<<std::endl;
+        b+=oss.str();
+    }
+       if (b=="Your store has following customers\n\n-----------------------") display->set_text(s) ; else {
+           display->set_text(b);
+       } 
+}
 
 //for displaying the result;
 void Mainwin::on_view_products_click(){
     std::string s ="Your store doesn't have any products for now :(";
-    std::string b="Your store has following products\n";
+    std::string b="Your store has following products\n\n-----------------------\n";
     std::string a="";
     for (int i=0; i< store->products();i++){
         std::ostringstream oss;
         oss<<store->product(i)<<std::endl;
         b+=oss.str();
     }
-       if (b=="Your store has following products\n") display->set_text(s) ; else {
+       if (b=="Your store has following products\n\n-----------------------\n") display->set_text(s) ; else {
            display->set_text(b);
        }       
 };
