@@ -8,22 +8,14 @@ Store::Store(std::istream& ist){
     int size_of_product;
     ist>>size_of_product;
     ist.ignore(32768,'\n');
-    
-    
+        
     std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
     int price =0;
     std::string line;
     if(ist.good()){
         while (getline(ist,line)){
-            if (line==("tool")){
-                _products.push_back(new Tool{ist});
-            } else if (line==("plant")){
-                _products.push_back(new  Plant{ist});
-                
-            } else if (line==("mulch")){
-                _products.push_back(new  Mulch{ist});
-                
-            } else{}
+            Order order{ist};
+            _orders.push_back(&order);
         }
     }
     
@@ -33,12 +25,18 @@ Store::Store(std::istream& ist){
 void Store::save(std::ostream& ost){
     int j=0;
     ost<<_name<<'\n'<<products()<<'\n';
-    while (j<products()){
-        _products[j]->save(ost);
+    while (j<orders()){
+        _orders[j]->save(ost);
         j++;
     }
     ost<<std::endl;
 }
+
+std::string Store::name(){
+    return _name;
+}
+
+
 void Store::add_product(const Tool& product) {_products.push_back(new Tool{product});}
 void Store::add_product(const Plant& product) {_products.push_back(new Plant{product});}
 void Store::add_product(const Mulch& product) {_products.push_back(new Mulch{product});}
@@ -52,3 +50,19 @@ int Store::customers(){ return _customers.size();}
 const Customer& Store::customer(int index){
     return *_customers.at(index);
 }
+
+int Store::add_order(Customer& customer){
+    Order order{customer};
+    _orders.push_back(&order);
+    return _orders.size();
+
+}
+
+void Store::add_item(int order_num, Product& product, int quantity){
+    Item item{product, quantity};
+    Order temp= order(order_num);
+    temp.add_item(item);
+}
+
+
+    
