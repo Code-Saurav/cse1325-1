@@ -64,5 +64,9 @@ void Store::add_item(int order_num, Product& product, int quantity){
     temp.add_item(item);
 }
 
+const Order& Store::order(int index){
+    return *_orders.at(index);
+}
+
 
     
