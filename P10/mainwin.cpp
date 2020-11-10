@@ -403,7 +403,7 @@ void Mainwin::on_new_order_click(){
         j++;
     }
     comboboxtext->set_active(1);
-    comboboxtext->signal_changed().connect([this]{Gtk::MessageDialog{*this,"hYesda"}.run();}); 
+    comboboxtext->signal_changed().connect([this]{Gtk::MessageDialog{*this,"Test"}.run();}); 
     dialog.add_button("_Create Order",1);
     dialog.add_button("_Cancel",0);
 
