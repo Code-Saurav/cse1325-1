@@ -3,15 +3,13 @@
 
 #include <iostream>
 #include <fstream>
-#include "item.h" 
-
 class Product {
   public: 
     Product(std::string name, double price, std::string description);
     friend std::ostream& operator<<(std::ostream& ost, const Product& product);
     Product(std::istream& ist);
     virtual void save(std::ostream& ost);
-    friend class Item; //Item declared friend class: Reason -> NO GETTER METHOD IN UML DIAGRAM FOR PRODUCT CLASS
+    int price();
   protected:
     virtual std::string to_string() const;
   private:

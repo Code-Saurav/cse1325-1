@@ -5,7 +5,7 @@
 
 Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
-    set_default_size(600,600);
+    set_default_size(800,600);
     set_title("Manga Manager");
     Gtk::Box *vbox = Gtk::manage(new Gtk::VBox);
     add(*vbox);
@@ -73,7 +73,7 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
     insertmenu->append(*insert_customer);
 
     Gtk::MenuItem *insert_order =Gtk::manage(new Gtk::MenuItem{"_Order",true});
-    // inser_order->signal_activate().connect([this]{this->on_new_order_click();});
+    insert_order->signal_activate().connect([this]{this->on_new_order_click();});
     insertmenu->append(*insert_order);
    
     //VIEW
@@ -112,70 +112,84 @@ Mainwin::Mainwin() : store{nullptr}, display{new Gtk::Label{}} {
 
 
     //TOOLBAR
-    Gtk::Toolbar *tool_bar= Gtk::manage(new Gtk::Toolbar);
-    vbox->add(*tool_bar);
+    Gtk::Toolbar *toolbar= Gtk::manage(new Gtk::Toolbar);
+    vbox->add(*toolbar);
 
     Gtk::ToolButton *new_store = Gtk::manage(new Gtk::ToolButton{Gtk::Stock::NEW});
     new_store->set_tooltip_markup("New Store");
-    new_store->signal_clicked().connect([this]{this->on_new_store_click();});
-    tool_bar->append(*new_store);
+    // new_store->signal_clicked().connect([this]{this->on_new_store_click();});
+    toolbar->append(*new_store);
 
 
     Gtk::Image *open_store = Gtk::manage(new Gtk::Image{"open.jpeg"});
-    open_store->set_tooltip_markup("Open Store");
-    open_store->signal_clicked().connect([this]{this->on_open_click();});
-    tool_bar->append(*open_store);
+    Gtk::ToolButton *button1= Gtk::manage(new Gtk::ToolButton(*open_store));
+    button1->set_tooltip_markup("Open Store");
+    // button1->signal_clicked().connect([this]{this->on_open_click();});
+    toolbar->append(*button1);
 
     Gtk::Image *save_store = Gtk::manage(new Gtk::Image{"save.png"});
-    save_store->set_tooltip_markup("Save Store");
-    save_store->signal_clicked().connect([this]{this->on_save_click();});
-    tool_bar->append(*save_store);
+    Gtk::ToolButton *button2= Gtk::manage(new Gtk::ToolButton(*save_store));
+    button2->set_tooltip_markup("Save Store");
+    // button2->signal_clicked().connect([this]{this->on_open_click();});
+    toolbar->append(*button2);
+
     
     Gtk::Image *save_store_as = Gtk::manage(new Gtk::Image{"save_as.png"});
-    save_store_as->set_tooltip_markup("Save Store As");
-    save_store_as->signal_clicked().connect([this]{this->on_save_as_click();});
-    tool_bar->append(*save_store_as);
-    
-    Gtk::Image *insert_customer = Gtk::manage(new Gtk::Image{"customer.png"});
-    insert_customer->set_tooltip_markup("Insert Customer");
-    insert_customer->signal_clicked().connect([this]{this->on_new_customer_click();});
-    tool_bar->append(*insert_customer);
+    Gtk::ToolButton *button3= Gtk::manage(new Gtk::ToolButton(*save_store_as));
+    button3->set_tooltip_markup("Save As Store");
+    // button1->signal_clicked().connect([this]{this->on_open_click();});
+    toolbar->append(*button3);
 
-    Gtk::Image *insert_order = Gtk::manage(new Gtk::Image{"order.png"});
-    insert_order->set_tooltip_markup("Insert Order");
-    insert_order->signal_clicked().connect([this]{this->on_new_order_click();});
-    tool_bar->append(*insert_order);
+    
+    Gtk::Image *insert_customers = Gtk::manage(new Gtk::Image{"customer.png"});
+    Gtk::ToolButton *button4= Gtk::manage(new Gtk::ToolButton(*insert_customers));
+    button4->set_tooltip_markup("Insert Customer");
+    // button1->signal_clicked().connect([this]{this->on_open_click();});
+    toolbar->append(*button4);
+
+
+    Gtk::Image *insert_orders = Gtk::manage(new Gtk::Image{"order.png"});
+    Gtk::ToolButton *button5= Gtk::manage(new Gtk::ToolButton(*insert_orders));
+    button5->set_tooltip_markup("Insert Order");
+    // insert_order->signal_clicked().connect([this]{this->on_new_order_click();});
+    toolbar->append(*button5);
 
     Gtk::Image *insert_tool = Gtk::manage(new Gtk::Image{"tool.png"});
-    insert_tool->set_tooltip_markup("Insert Tool");
-    insert_tool->signal_clicked().connect([this]{this->on_new_tool_click();});
-    tool_bar->append(*insert_tool);
+    Gtk::ToolButton *button6= Gtk::manage(new Gtk::ToolButton(*insert_tool));
+    button6->set_tooltip_markup("Insert Tool");
+    // insert_tool->signal_clicked().connect([this]{this->on_new_tool_click();});
+    toolbar->append(*button6);
 
 
     Gtk::Image *insert_plant = Gtk::manage(new Gtk::Image{"plant.png"});
-    insert_plant->set_tooltip_markup("Insert Plant");
-    insert_plant->signal_clicked().connect([this]{this->on_new_plant_click();});
-    tool_bar->append(*insert_plant);
+    Gtk::ToolButton *button7= Gtk::manage(new Gtk::ToolButton(*insert_plant));
+    button7->set_tooltip_markup("Insert Plant");
+    // insert_plant->signal_clicked().connect([this]{this->on_new_plant_click();});
+    toolbar->append(*button7);
 
-    Gtk::Image *insert_mulch = Gtk::manage(new Gtk::Image{"mulch.png"});
-    insert_mulch->set_tooltip_markup("Insert Mulch");
-    insert_mulch->signal_clicked().connect([this]{this->on_new_mulch_click();});
-    tool_bar->append(*insert_mulch);
+    Gtk::Image *insert_mulchs = Gtk::manage(new Gtk::Image{"mulch.png"});
+    Gtk::ToolButton *button8= Gtk::manage(new Gtk::ToolButton(*insert_mulchs));
+    button8->set_tooltip_markup("Insert Mulch");
+    // insert_mulchs->signal_clicked().connect([this]{this->on_new_mulch_click();});
+    toolbar->append(*button8);
     
     Gtk::Image *view_all_customers = Gtk::manage(new Gtk::Image{"view_customer.png"});
-    view_all_customers->set_tooltip_markup("View All Customers");
-    view_all_customers->signal_clicked().connect([this]{this->on_view_customer_click();});
-    tool_bar->append(*view_all_customers);
+    Gtk::ToolButton *button9= Gtk::manage(new Gtk::ToolButton(*view_all_customers));
+    button9->set_tooltip_markup("View All Customers");
+    // view_all_customers->signal_clicked().connect([this]{this->on_view_customer_click();});
+    toolbar->append(*button9);
     
     Gtk::Image *view_all_orders = Gtk::manage(new Gtk::Image{"view_order.png"});
-    view_all_orders->set_tooltip_markup("View Order");
-    view_all_orders->signal_clicked().connect([this]{this->on_view_orders_click();});
-    tool_bar->append(*view_all_orders);
+    Gtk::ToolButton *button10= Gtk::manage(new Gtk::ToolButton(*view_all_orders));
+    button10->set_tooltip_markup("View Order");
+    // view_all_orders->signal_clicked().connect([this]{this->on_view_orders_click();});
+    toolbar->append(*button10);
     
     Gtk::Image *view_all_plants = Gtk::manage(new Gtk::Image{"view_plants.png"});
-    view_all_plants->set_tooltip_markup("Open Store");
-    view_all_plants->signal_clicked().connect([this]{this->on_view_products();});
-    tool_bar->append(*view_all_plants);
+    Gtk::ToolButton *button11= Gtk::manage(new Gtk::ToolButton(*view_all_plants));
+    button11->set_tooltip_markup("Open Store");
+    // view_all_plants->signal_clicked().connect([this]{this->on_view_products();});
+    toolbar->append(*button11);
     
       //displaying
     display= Gtk::manage(new Gtk::Label());
@@ -356,38 +370,15 @@ std::vector <std::string> Mainwin::get_string_multigrid(){
 }
 void Mainwin::on_new_customer_click(){
     try{
-        // name_entry.set_text("Hello");
-        
-        // Gtk::MessageDialog *msg = new Gtk::MessageDialog (*this, "My message!",true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);
-        // msg->show();
-        // Gtk::Entry *a= Gtk::manage(new Gtk::Entry);
-        // a->show();
-        // Gtk::Dialog *dialog = manage ( new Gtk::Dialog() );
-        // dialog->set_title("Add Text");
-
-        // Gtk::Entry entry;
-
-        // entry.set_activates_default(true);
-        // entry.set_max_length(50);
-        // entry.set_text("hello world");
-        // entry.select_region(0, entry.get_text_length());
-
-        // dialog->add(entry);
-        // dialog->show();
         std::vector <std::string> a = get_string_multigrid();
         std::string name=a[0];
         std::string phone=a[1];
         std::string email=a[2];
 
-        // std::string name=get_string("Name ");
-        // std::string phone=get_string("Phone ");
-        // std::string email=get_string("Email ");
-
         Customer temp(name,phone,email);
         store->add_customer(temp);
         on_view_customer_click();
         
-
     }catch(std::exception& e){
 
     }
@@ -395,6 +386,29 @@ void Mainwin::on_new_customer_click(){
 } 
 
 void Mainwin::on_new_order_click(){
+    Gtk::Dialog dialog("Insert Orders", *this);
+    Gtk::Grid grid;
+    dialog.get_content_area()->add(grid);
+    Gtk::Label l_name{"Select the Customer"};
+    grid.attach(l_name,0,0,1,1);
+
+    Gtk::ComboBoxText* comboboxtext{Gtk::manage(new Gtk::ComboBoxText{true})};
+    grid.attach(*comboboxtext,1,0,1,1);
+    int j=0;
+    while (j<store->customers()){
+        Customer temp = store->customer(j);
+        std::ostringstream oss;
+        oss<<temp<<std::endl;
+        comboboxtext->append(oss.str());
+        j++;
+    }
+    comboboxtext->set_active(1);
+    comboboxtext->signal_changed().connect([this]{Gtk::MessageDialog{*this,"hYesda"}.run();}); 
+    dialog.add_button("_Create Order",1);
+    dialog.add_button("_Cancel",0);
+
+    dialog.show_all();
+    dialog.run();
 
 }
 
@@ -402,11 +416,11 @@ void Mainwin::on_view_orders_click(){
     std::string s ="Your store doesn't have any customer for now :(";
     std::string b="Your store has following orders\n\n-----------------------";
     std::string a="";
-    for (int i=0; i< store->orders();i++){
-        std::ostringstream oss;
-        oss<<store->order(i)<<std::endl;
-        b+=oss.str();
-    }
+    // for (int i=0; i< store->orders();i++){
+    //     std::ostringstream oss;
+    //     oss<<store->order(i)<<std::endl;
+    //     b+=oss.str();
+    // }
        if (b=="Your store has following customers\n\n-----------------------") display->set_text(s) ; else {
            display->set_text(b);
        } 

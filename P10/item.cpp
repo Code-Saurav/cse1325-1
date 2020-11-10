@@ -1,9 +1,5 @@
 #include "item.h"
-Item::Item(Product& product, int quantity):_product{ new Product(product)}, _quantity{quantity}{};
-
-Item::~Item(){
-    delete _product;
-}
+Item::Item(Product& product, int quantity):_product{&product}, _quantity{quantity}{};
 
 Item::Item(std::istream& ist){
     if (ist.good()){
@@ -23,13 +19,6 @@ Item::Item(std::istream& ist){
     }
 }
 
-Item& Item::operator=(const Item& rhs){
-    if (this == &rhs) return *this;  
-    this->_product= rhs._product;
-    this->_quantity= rhs._quantity;
-    return *this;
-}
-
 void Item::save(std::ostream& ost){
     ost<<_quantity<<std::endl;
     _product->save(ost);
@@ -37,7 +26,7 @@ void Item::save(std::ostream& ost){
 }
 
 double Item::subtotal(){
-    int price = _product->_price * _quantity;
+    int price = _product->price() * _quantity;
     return price;
 }
 

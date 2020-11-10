@@ -23,6 +23,10 @@ Product::Product(std::istream& ist){
     // ist.ignore(32768,'\n');
 }
 
+int Product::price(){
+    return _price;
+}
+
 void Product::save(std::ostream& ost){
 
     ost<<_name<<'\n'<<_price<<'\n'<<_description<<std::endl;

@@ -22,7 +22,7 @@ class Mainwin : public Gtk::Window {
         void on_new_mulch_click();     // Create a new mulch product
         void on_view_products_click(); // Update the display
         void on_view_customer_click(); // Display the customer 
-        void on_view_orders_clicK();   // View Orders click
+        void on_view_orders_click();   // View Orders click
         void on_about_click();         // Click About Game
         void on_quit_click();          // Exit the game
 
@@ -33,6 +33,7 @@ class Mainwin : public Gtk::Window {
         std::vector<std::string> get_string_multigrid();
         std::string filename;
         Store* store;               // The currently active store
+        void set_status(std::string status="");
         Gtk::Label* display;        // Status message display
 };
 #endif 

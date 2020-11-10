@@ -2,34 +2,38 @@
 #include <typeinfo>
 Store::Store(std::string name) : _name{name} { }
 Store::Store(std::istream& ist){
-    std::string store_name;
-    getline(ist,store_name,'\n');
+    std::getline(ist, _name);
+    int size;
+    std::string s;
     
-    int size_of_product;
-    ist>>size_of_product;
-    ist.ignore(32768,'\n');
-        
-    std::cout<<store_name<<std::endl<<size_of_product<<std::endl;
-    int price =0;
-    std::string line;
-    if(ist.good()){
-        while (getline(ist,line)){
-            Order order{ist};
-            _orders.push_back(&order);
-        }
+    ist >> size; ist.ignore(32767, '\n');
+    while(size-- > 0) {
+        std::getline(ist, s);
+        if(s == "tool") _products.push_back(new Tool(ist));
+        else if(s == "plant") _products.push_back(new Plant(ist));
+        else if(s == "mulch") _products.push_back(new Mulch(ist));
+        else if(s.size()) throw std::runtime_error{"Invalid product type on input: " + s};
     }
     
+    ist >> size; ist.ignore(32767, '\n');
+    while(size-- > 0) {
+        _customers.push_back(new Customer(ist));
+    }  
+    ist >>size; ist.ignore(32767, '\n');
+    while (size-->0){
+        _orders.push_back(new Order(ist));
+    }    
 }
 // (new Tool{name, price, description}));
 
 void Store::save(std::ostream& ost){
-    int j=0;
-    ost<<_name<<'\n'<<products()<<'\n';
-    while (j<orders()){
-        _orders[j]->save(ost);
-        j++;
-    }
-    ost<<std::endl;
+    ost << _name << '\n';
+    ost << _products.size() << '\n';
+    for(Product* p : _products) p->save(ost);
+    ost << _customers.size() << '\n';
+    for(Customer* c : _customers) c->save(ost);
+    ost<< _orders.size() <<'\n';
+    for(Order* d: _orders) d->save(ost);
 }
 
 std::string Store::name(){

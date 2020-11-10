@@ -24,7 +24,7 @@ store.o: store.cpp *.h
 	$(CXX) $(CXXFLAGS) -c store.cpp -o store.o
 order.o: order.cpp *.h
 	$(CXX) $(CXXFLAGS) -c order.cpp -o order.o
-item.o: item.cpp *.h
+item.o: item.cpp item.h
 	$(CXX) $(CXXFLAGS) -c item.cpp -o item.o
 product.o: product.cpp *.h
 	$(CXX) $(CXXFLAGS) -c product.cpp -o product.o
