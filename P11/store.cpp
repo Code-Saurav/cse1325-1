@@ -68,8 +68,14 @@ void Store::add_item(int order_num, Product& product, int quantity){
 void Store::add_customer(Customer customer){
     _customers.push_back(new Customer{customer});
     std::sort(_customers.begin(),_customers.end(),[](const Customer* lhs, const Customer* rhs){
-        int lstring = lhs->get_name().at(0);
-        int rstring = rhs->get_name().at(0);
+        int i=0;
+        int lstring = std::tolower(lhs->get_name().at(0));
+        int rstring = std::tolower(rhs->get_name().at(0));
+        while (lstring==rstring){
+            i++;
+            lstring = std::tolower(lhs->get_name().at(i));
+            rstring = std::tolower(rhs->get_name().at(i));
+        }
         return lstring < rstring;
     });
 }
