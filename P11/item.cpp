@@ -34,4 +34,10 @@ int Item::quantity(){
     return _quantity;
 }
 
+std::ostream& operator<<(std::ostream& ost, const Item& item){
+
+    ost<<item._quantity<<' '<<*item._product;
+    return ost;
+}
+
 

@@ -24,14 +24,14 @@ class Store {
     void add_product(const Plant& product);
     void add_product(const Mulch& product);
     int products();
-    const Product& product(int index);
+    Product& product(int index);
 
     //customer
     void add_customer(Customer customer);
     int customers();
     const Customer& customer(int index);
 
-    int add_order(Customer& customer);
+    int add_order(const Customer& customer);
     void add_item(int order_num, Product& product, int quantity);
     int orders();
     const Order& order(int index);

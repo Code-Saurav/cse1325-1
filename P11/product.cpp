@@ -3,6 +3,20 @@
 
 Product::Product(std::string name, double price, std::string description)
     : _name{name}, _price{price}, _description{description}, _stocknum{++_nextsn} { }
+
+
+Product::Product(std::istream& ist){
+    ist>>_nextsn; ist.ignore(65535,'\n');
+
+    std::getline(ist,_name);
+    ist>>_stocknum;
+    ist>>_price;
+    ist.ignore(65535,'\n');
+    std::getline(ist,_description);
+    // ist>>_nextsn;
+    // ist.ignore(32768,'\n');
+}
+
 std::string Product::to_string() const {
     return _name + " (Stock# " + std::to_string(_stocknum)
                  + ", $" + std::to_string(round(_price*100)/100) + ")\n  "
@@ -14,16 +28,9 @@ std::ostream& operator<<(std::ostream& ost, const Product& product) {
 }
 int Product::_nextsn = 0;
 
-Product::Product(std::istream& ist){
-    std::getline(ist,_name,'\n');
-    ist>>_price;
-    ist.ignore(327678,'\n');
-    std::getline(ist,_description,'\n');
-    // ist>>_nextsn;
-    // ist.ignore(32768,'\n');
-}
 
-int Product::price(){
+
+double Product::price(){
     return _price;
 }
 

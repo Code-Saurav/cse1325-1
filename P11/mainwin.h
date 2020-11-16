@@ -30,11 +30,12 @@ class Mainwin : public Gtk::Window {
         int get_int(std::string prompt);
         double get_double(std::string prompt);
         std::string get_string(std::string prompt);
-        std::vector<std::string> get_string_multigrid();
+        void set_status(std::string status="");
+        
         std::string filename;
         Store* store;               // The currently active store
-        void set_status(std::string status="");
         Gtk::Label* display;        // Status message display
+        Gtk::Label* msg;
 };
 #endif 
 

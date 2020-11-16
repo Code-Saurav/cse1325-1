@@ -45,7 +45,7 @@ void Store::add_product(const Tool& product) {_products.push_back(new Tool{produ
 void Store::add_product(const Plant& product) {_products.push_back(new Plant{product});}
 void Store::add_product(const Mulch& product) {_products.push_back(new Mulch{product});}
 int Store::products() {return _products.size();}
-const Product& Store::product(int index) {return *_products.at(index);}
+Product& Store::product(int index) {return *_products.at(index);}
 
 void Store::add_customer(Customer customer){
     _customers.push_back(new Customer{customer});
@@ -55,22 +55,26 @@ const Customer& Store::customer(int index){
     return *_customers.at(index);
 }
 
-int Store::add_order(Customer& customer){
-    Order order{customer};
-    _orders.push_back(&order);
-    return _orders.size();
+int Store::add_order(const Customer& customer){
+    _orders.push_back(new Order{customer});
+    return _orders.size()-1;
 
 }
 
 void Store::add_item(int order_num, Product& product, int quantity){
-    Item item{product, quantity};
-    Order temp= order(order_num);
-    temp.add_item(item);
+    _orders[order_num]->add_item(Item{product,quantity});
 }
 
 const Order& Store::order(int index){
     return *_orders.at(index);
 }
+
+int Store::orders() {
+    return _orders.size();
+}
+
+
+
 
 
     

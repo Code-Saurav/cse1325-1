@@ -6,13 +6,13 @@ Customer::Customer(std::istream& ist){
     // std::string temp_name, temp_phone,temp_email;
     std::string temp;
     if (ist.good()) {
-        getline(ist,_name);
+        std::getline(ist,_name);
     } 
     if (ist.good()){
-        getline(ist,_phone);
+        std::getline(ist,_phone);
     }
     if (ist.good()){
-        getline(ist,_email);
+        std::getline(ist,_email);
     }
 }
 void Customer::save(std::ostream& ost){

@@ -15,5 +15,6 @@ class Item{
         Item(std::istream& ist);
         void save(std::ostream& ost); 
         int quantity();
+        friend std::ostream& operator<<(std::ostream& ost, const Item& item);
 };
 #endif
