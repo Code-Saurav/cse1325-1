@@ -465,10 +465,10 @@ void Mainwin::on_new_order_click(){
 
         while (true){
             oss.str("");
-            oss<<*(store->begin()+order_num);
-            std::cout<<*(store->begin()+order_num);
-            // oss<<store->order(order_num);
+            oss<<*(*(store->begin()+order_num));
             dialog.set_secondary_text(oss.str());
+            // dialog.set_secondary_text(std::to_string(order_num));
+            // oss<<store->order(order_num);
 
             dialog.show_all();
 
@@ -528,9 +528,10 @@ void Mainwin::on_view_orders_click(){
     p = store->begin();
     int i=0;
     while (p!=store->end()){
-        oss<<"Order"<<i<<'\n'<<*p<<std::endl;
+        oss<<"Order"<<i<<'\n'<<*(*p)<<std::endl;
         p++;
         i++;
+        checker=1;
     }
     // for (std::vector<Order*>::iterator itr= store->begin();)
     // int i=0;
