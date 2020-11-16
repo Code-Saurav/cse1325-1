@@ -369,10 +369,10 @@ void Mainwin::on_new_customer_click() {
     Gtk::Entry e_name;
     grid.attach(e_name, 1, 0, 1, 1);
     Gtk::Entry e_phone;
-    e_phone.set_placeholder_text("xxx-xxx-xxxx");
+    e_phone.set_placeholder_text("(xxx)xxx-xxxx");
     grid.attach(e_phone, 1, 1, 1, 1);
     Gtk::Entry e_email;
-    e_email.set_placeholder_text("xxx@domain.com");
+    e_email.set_placeholder_text("xxx@xxxx.com");
     grid.attach(e_email, 1, 2, 1, 1);
 
     dialog.add_button("Insert", 1);
@@ -465,7 +465,9 @@ void Mainwin::on_new_order_click(){
 
         while (true){
             oss.str("");
-            oss<<store->order(order_num);
+            oss<<*(store->begin()+order_num);
+            std::cout<<*(store->begin()+order_num);
+            // oss<<store->order(order_num);
             dialog.set_secondary_text(oss.str());
 
             dialog.show_all();
@@ -521,10 +523,27 @@ void Mainwin::on_view_orders_click(){
     bool checker =0; 
     std::ostringstream oss;
     oss<<"ORDERS\n";
-    for (int i=0; i< store->orders();i++){
-        oss<<"Order"<<i<<'\n'<<store->order(i)<<std::endl;
-        checker =1;
+    //ITERATOR
+    std::vector<Order*>::iterator p;
+    p = store->begin();
+    int i=0;
+    while (p!=store->end()){
+        oss<<"Order"<<i<<'\n'<<*p<<std::endl;
+        p++;
+        i++;
     }
+    // for (std::vector<Order*>::iterator itr= store->begin();)
+    // int i=0;
+    // for (Order* o: store){
+    //     oss<<"Order"<<i<<'\n'<<*o<<std::endl;
+    //     i++;
+    // }
+    //ITERATOR END
+
+    // for (int i=0; i< store->orders();i++){
+    //     oss<<"Order"<<i<<'\n'<<store->order(i)<<std::endl;
+    //     checker =1;
+    // }
     if (checker ==1){
         display->set_markup(oss.str());
     } else{

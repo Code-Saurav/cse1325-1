@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <iostream>
+#include <iterator>
 #include <fstream>
 
 class Store {
@@ -33,14 +34,21 @@ class Store {
 
     int add_order(const Customer& customer);
     void add_item(int order_num, Product& product, int quantity);
-    int orders();
-    const Order& order(int index);
+    // int orders();
+    // const Order& order(int index);
+
+    //ITERATOR
+    typedef std::vector<Order*>::iterator iterator;
+    typedef std::vector<Order*>::const_iterator const_iterator;
+    iterator begin() { return _orders.begin();}
+    iterator end() {return _orders.end();}
 
   private:
     std::string _name;
     std::vector<Product*> _products;
     std::vector<Customer*> _customers;
     std::vector<Order*> _orders;
+    // std::vector<Order*> _orders;
 };
 
 #endif

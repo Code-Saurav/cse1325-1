@@ -14,6 +14,7 @@ class Customer{
         Customer(std::istream& ist);
         void save(std::ostream& ost);
         friend std::ostream& operator<<(std::ostream& ost, const Customer& customer);
+        std::string get_name() const;
 
 };
 #endif

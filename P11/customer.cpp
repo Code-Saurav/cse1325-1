@@ -18,6 +18,10 @@ Customer::Customer(std::istream& ist){
 void Customer::save(std::ostream& ost){
     ost<<_name<<'\n'<<_phone<<'\n'<<_email<<std::endl;
 }
+std::string Customer::get_name() const{
+    return _name;
+}
+
 std::ostream& operator<<(std::ostream& ost, const Customer& customer) {
     ost<<customer._name<<" ("<<customer._phone<<", "<<customer._email<<")";
     return ost;

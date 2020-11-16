@@ -1,5 +1,6 @@
 #include "store.h"
 #include <typeinfo>
+#include <algorithm>
 Store::Store(std::string name) : _name{name} { }
 Store::Store(std::istream& ist){
     std::getline(ist, _name);
@@ -47,9 +48,9 @@ void Store::add_product(const Mulch& product) {_products.push_back(new Mulch{pro
 int Store::products() {return _products.size();}
 Product& Store::product(int index) {return *_products.at(index);}
 
-void Store::add_customer(Customer customer){
-    _customers.push_back(new Customer{customer});
-}
+
+
+
 int Store::customers(){ return _customers.size();}
 const Customer& Store::customer(int index){
     return *_customers.at(index);
@@ -64,14 +65,23 @@ int Store::add_order(const Customer& customer){
 void Store::add_item(int order_num, Product& product, int quantity){
     _orders[order_num]->add_item(Item{product,quantity});
 }
-
-const Order& Store::order(int index){
-    return *_orders.at(index);
+void Store::add_customer(Customer customer){
+    _customers.push_back(new Customer{customer});
+    std::sort(_customers.begin(),_customers.end(),[](const Customer* lhs, const Customer* rhs){
+        int lstring = lhs->get_name().at(0);
+        int rstring = rhs->get_name().at(1);
+        return lstring < rstring;
+    });
 }
 
-int Store::orders() {
-    return _orders.size();
-}
+
+// const Order& Store::order(int index){
+//     return *_orders.at(index);
+// }
+
+// int Store::orders() {
+//     return _orders.size();
+// }
 
 
 
