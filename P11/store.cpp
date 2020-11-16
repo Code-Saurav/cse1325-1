@@ -69,7 +69,7 @@ void Store::add_customer(Customer customer){
     _customers.push_back(new Customer{customer});
     std::sort(_customers.begin(),_customers.end(),[](const Customer* lhs, const Customer* rhs){
         int lstring = lhs->get_name().at(0);
-        int rstring = rhs->get_name().at(1);
+        int rstring = rhs->get_name().at(0);
         return lstring < rstring;
     });
 }
