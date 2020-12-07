@@ -5,16 +5,19 @@
 int main(int argc, char *argv[])
 {
     
-    int width{1000}, height{width}, icount{60}, nthreads{1};
+    int width=1000;
+    int height=width;
+    int icount= 60;
+    int nthreads=1;
     std::string filename = "default.ppm";
-    if (argc == 5)
-    {
+    if (argc!=1){
         try
         {
             width = std::stoi(argv[1]);
             height = std::stoi(argv[2]);
             icount = std::stoi(argv[3]);
-            filename = argv[4];
+            nthreads = std::stoi(argv[4]);
+            filename = argv[5];
         }
         catch (std::exception &err)
         {
@@ -23,8 +26,8 @@ int main(int argc, char *argv[])
             return -2;
         }
     }
-
-    std::cout << "Width: " << width << " Height: " << height << " icount: " << icount << std::endl;
+    
+    std::cout << "Width: " << width << " Height: " << height << " icount: " << icount << " threads: "<< nthreads<<std::endl;
     Mandelbrot mandel(width, height, icount, nthreads);
     try
     {
@@ -35,5 +38,6 @@ int main(int argc, char *argv[])
     {
         return -1;
     }
+    std::cout << "Wrote: "<<filename<<std::endl;
     return 0;
 }
