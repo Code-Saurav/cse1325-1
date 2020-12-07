@@ -4,9 +4,9 @@
 
 int main(int argc, char *argv[])
 {
+    
     int width{1000}, height{width}, icount{60}, nthreads{1};
     std::string filename = "default.ppm";
-
     if (argc == 5)
     {
         try
@@ -24,8 +24,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (argc != 5 || argc != 1)
-        return -1;
     std::cout << "Width: " << width << " Height: " << height << " icount: " << icount << std::endl;
     Mandelbrot mandel(width, height, icount, nthreads);
     try
@@ -37,7 +35,5 @@ int main(int argc, char *argv[])
     {
         return -1;
     }
-    int a;
-    std::cin >> a;
     return 0;
 }
