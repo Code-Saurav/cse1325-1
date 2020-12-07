@@ -21,6 +21,7 @@ private:
   int _width;   // image x size (adjust for runtime)
   int _height;  // image y size (adjust for runtime)
   int _icount;  // iteration count
+  int _nthreads;
   int *_values; // array containing color values at y*width+x
 };
 

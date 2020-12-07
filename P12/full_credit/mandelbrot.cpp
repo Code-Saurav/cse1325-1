@@ -1,17 +1,32 @@
 #include "mandelbrot.h"
 
+#include <array>
+#include <thread>
+#include <mutex>
+
 const int MAX_COLOR = 255;
 
 Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads) 
-  : _width{width}, _height{height}, _icount{icount} {
+  : _width{width}, _height{height}, _icount{icount}, _nthreads{nthreads} {
 
     // Allocate memory for the results
     _values = new int[_width * _height];
-    
-    // Calculate the results
-    for (int y = 0; y < _height; y++)  {
-        calculate_rows(y, y);
+
+    int arr[_nthreads];
+    int start =0;
+    for (int i=0; i< _nthreads;++i){
+        arr[i]=start+_height/_nthreads;
+        start =_height/_nthreads;
     }
+    start =0;
+    std::thread mythread[_nthreads];
+    for (int i=0; i<_nthreads;i++){
+        mythread[i]=std::thread{&Mandelbrot::calculate_rows,this,start,arr[i]};
+        start=arr[i];
+    }
+    for (int i=0; i<_nthreads;i++) mythread[i].join();
+
+    // Calculate the results
 }
 
 // Deallocate results memory
