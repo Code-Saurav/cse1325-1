@@ -1,4 +1,4 @@
-CXX = gcc
+CXX = g++
 CXXFLAGS = --std=c++17
 
 all: mandelbrot
