@@ -1,5 +1,9 @@
 QUESTION 1: Which values of width, height, and icount did you select for your machine to generate a Mandelbrot image with 1 thread with around a 30 second runtime: 
 
+Width: 1030
+Height: 1000
+icount: 1000
+threads: 1
 
 QUESTION 2: Provide the output of ``time ./mandelbrot `` *width height icount nthreads* for runs with 1 through 16 threads below. You can run all of these with a single bash command if you like: ``for i in {1..16} ; do time ./mandelbrot 2000 2000 500 $i ; done``
 
@@ -15,17 +19,110 @@ sys	0m0.020s
 
 YOUR Timing:
 
+Width: 2000 Height: 2000 icount: 500 threads: 1
+Wrote: image.ppm
 
+real    1m1.362s
+user    1m1.084s
+sys     0m0.208s
+Width: 2000 Height: 2000 icount: 500 threads: 2
+Wrote: image.ppm
+
+real    0m35.417s
+user    1m6.770s
+sys     0m0.236s
+Width: 2000 Height: 2000 icount: 500 threads: 3
+Wrote: image.ppm
+
+real    0m45.126s
+user    1m18.221s
+sys     0m0.505s
+Width: 2000 Height: 2000 icount: 500 threads: 4
+Wrote: image.ppm
+
+real    0m34.901s
+user    1m16.544s
+sys     0m0.375s
+Width: 2000 Height: 2000 icount: 500 threads: 5
+Wrote: image.ppm
+
+real    0m34.347s
+user    1m19.471s
+sys     0m0.183s
+Width: 2000 Height: 2000 icount: 500 threads: 6
+Wrote: image.ppm
+
+real    0m33.234s
+user    1m20.778s
+sys     0m0.207s
+Width: 2000 Height: 2000 icount: 500 threads: 7
+Wrote: image.ppm
+
+real    0m33.069s
+user    1m21.384s
+sys     0m1.005s
+Width: 2000 Height: 2000 icount: 500 threads: 8
+Wrote: image.ppm
+
+real    0m31.543s
+user    1m21.638s
+sys     0m0.467s
+Width: 2000 Height: 2000 icount: 500 threads: 9
+Wrote: image.ppm
+
+real    0m32.759s
+user    1m23.152s
+sys     0m0.564s
+Width: 2000 Height: 2000 icount: 500 threads: 10
+Wrote: image.ppm
+
+real    0m31.485s
+user    1m22.646s
+sys     0m0.639s
+Width: 2000 Height: 2000 icount: 500 threads: 11
+Wrote: image.ppm
+
+real    0m32.064s
+user    1m23.435s
+sys     0m0.467s
+Width: 2000 Height: 2000 icount: 500 threads: 12
+Wrote: image.ppm
+
+real    0m31.430s
+user    1m23.751s
+sys     0m0.377s
+Width: 2000 Height: 2000 icount: 500 threads: 13
+Wrote: image.ppm
+
+real    0m31.233s
+user    1m23.045s
+sys     0m0.311s
+Width: 2000 Height: 2000 icount: 500 threads: 14
+Wrote: image.ppm
+
+real    0m35.478s
+user    1m30.884s
+sys     0m1.848s
+Width: 2000 Height: 2000 icount: 500 threads: 15
+Wrote: image.ppm
+
+real    0m38.196s
+user    1m36.072s
+sys     0m1.130s
+Width: 2000 Height: 2000 icount: 500 threads: 16
+Wrote: image.ppm
+
+real    0m35.698s
+user    1m35.354s
+sys     0m0.335s
 
 
 QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
-
+No, adding more thread doesn't necessarily speed up the program. Having less thread wouldn't necessarily
+use the CPU, while having more thread can cause thread fighting over the resources. 
 
 
 
 QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
-
-
-
-
-
+Yes, it increases the system load, beacause when system process calls for sub threads, it crunches CPU processing, and hence consume the 
+full capacity of CPU to perform processing. That's why we also set timer to forbit a single program from accessing the whole CPU.  

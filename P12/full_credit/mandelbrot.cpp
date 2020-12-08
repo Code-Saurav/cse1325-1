@@ -16,7 +16,6 @@ Mandelbrot::Mandelbrot(int width, int height, int icount, int nthreads)
     for (int i=0;i<_nthreads;++i){
         arr[i]=start+_height/_nthreads;
         start+=_height/_nthreads;
-        std::cout<<start<<std::endl;
     }
     start= 0;
     std::thread mythread[_nthreads];
