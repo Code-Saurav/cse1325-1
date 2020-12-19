@@ -1,9 +1,6 @@
-# cse1325
-CSE 1325 Assignments<br/><br/>
-Username: <strong>hprabesh</strong><br/>
-Email: <strong>prabesh.humagain@mavs.uta.edu</strong><br/>
-NetID:<strong> 1001734700</strong><br/>
-
+# Introduction to Object Oriented Programming in C++ 
+Fall 2020 - CSE 1325 Assignments<br/><br/>
+Username: <strong>Prabesh Humagain</strong><br/>
 
 
 <ol>
